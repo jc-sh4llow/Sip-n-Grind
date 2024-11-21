@@ -5,6 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('.navbar');
     const searchIconContainer = document.querySelector('.search-icon-container');
     const searchBar = document.querySelector('.search-bar');
+    const aboutDropdown = document.getElementById('about-dropdown')
+    const aboutDropdownMenu = document.getElementById('about-dropdown-menu')
+    const orderDropdown = document.getElementById('order-dropdown')
+    const orderDropdownMenu = document.getElementById('order-dropdown-menu')
+    const locationDropdown = document.getElementById('location-dropdown')
+    const locationDropdownMenu = document.getElementById('location-dropdown-menu')
+    const socialDropdown = document.getElementById('social-dropdown')
+    const socialDropdownMenu = document.getElementById('social-dropdown-menu')
 
     // Toggle the navbar visibility when the hamburger button is clicked
     hamburgerBtn.addEventListener('click', (e) => {
@@ -99,4 +107,45 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+
+    aboutDropdown.addEventListener("click", () =>{
+        aboutDropdownMenu.classList.toggle("about-content");
+    });
+
+    document.addEventListener("click", (event) => {
+        if (aboutDropdown.contains(event.target) && !aboutDropdownMenu.contains(event.target)){
+            aboutDropdownMenu.classList.add("hidden");
+        }
+    });
+
+    orderDropdown.addEventListener("click", () =>{
+        orderDropdownMenu.classList.toggle("order-content");
+    });
+
+    document.addEventListener("click", (event) => {
+        if (orderDropdown.contains(event.target) && !orderDropdownMenu.contains(event.target)){
+            orderDropdownMenu.classList.add("hidden");
+        }
+    });
+
+    locationDropdown.addEventListener("click", () =>{
+        locationDropdownMenu.classList.toggle("location-content");
+    });
+
+    document.addEventListener("click", (event) => {
+        if (locationDropdown.contains(event.target) && !locationDropdownMenu.contains(event.target)){
+            locationDropdownMenu.classList.add("hidden");
+        }
+    });
+
+    socialDropdown.addEventListener("click", () =>{
+        socialDropdownMenu.classList.toggle("social-content");
+    });
+
+    document.addEventListener("click", (event) => {
+        if (socialDropdown.contains(event.target) && !socialDropdownMenu.contains(event.target)){
+            socialDropdownMenu.classList.add("hidden");
+        }
+    });
+
 });

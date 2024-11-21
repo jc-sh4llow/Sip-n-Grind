@@ -219,7 +219,7 @@ body, html{
     }
 
     .navbar-items {
-        display: none; /* Initially hidden */
+        display: none;
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -367,39 +367,38 @@ body, html{
     display: grid;
     grid-template-columns: 50% 50%;
 }
-.text-area{
+.reader .text-area{
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
-.text-area-2{
+.reader .text-area-2{
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
     flex-direction: column;
     margin-bottom: 30px;
 }
-.text-area-2 h2{
+.reader .text-area-2 h2{
     font-size: 48px;
     color: #fff;
     font-weight: 400;
     margin-left: 30px;
 }
-.text-area-2 h1{
+.reader .text-area-2 h1{
     font-size: 64px;
     color: #fff;
     font-weight: 400;
     margin-bottom: 30px;
     line-height: 84px;
 }
-.text-area-2 p{
+.reader .text-area-2 p{
     font-size: 20px;
     color: #fff;
     font-weight: 400;
 }
 .price-button{
     display: flex;
-    /* border: 2px solid black; */
     margin-top: 60px;
 }
 .price-button .price{
@@ -408,7 +407,6 @@ body, html{
     font-family: 'Inria Serif', serif;
 }
 .price-button .brew-button{
-    /* outline: 1px solid #38220F; */
     background: #ECE0D1;
     width: 160px;
     height: 45px;
@@ -436,7 +434,7 @@ body, html{
 .brew-button{
     text-decoration: none;
 }
-.image-area{
+.reader .image-area{
     display: flex;
     justify-content: flex-end;
     align-items:flex-end;
@@ -457,54 +455,55 @@ body, html{
 
 @media (max-width: 768px) {
     .reader {
-        margin-top: 0; /* Adjust spacing if needed */
+        margin-top: 0;
         width: 100%;
-        height: auto; /* Allow height to adjust naturally */
+        height: auto;
         background-size: 100% 100%;
         background-position: center;
         display: flex;
         flex-direction: column;
-        align-items: center; /* Center align contents */
+        align-items: center;
         justify-content: center;
     }
 
     .rectangle-2 {
-        margin-top: 0; /* Reset margins */
+        margin-top: 0;
         display: flex;
-        flex-direction: column; /* Stack text-area and image-area */
-        align-items: center; /* Center align contents */
-        width: 90%; /* Restrict width to avoid overflow */
-        gap: 20px; /* Add space between stacked elements */
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+        gap: 20px;
     }
 
-    .text-area {
+    .reader .text-area {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        text-align: center; /* Center-align text for smaller screens */
-        transform: scale(0.9); /* Scale down */
+        text-align: center;
+        transform: scale(0.9);
+        margin-top: 200px;
     }
 
-    .text-area-2 {
+    .reader .text-area-2 {
         display: flex;
-        align-items: center; /* Center vertically */
-        justify-content: center; /* Center horizontally */
-        flex-direction: column; /* Stack elements */
-        margin-bottom: 30px; /* Retain spacing */
-        text-align: center; /* Center text content */
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-bottom: 30px;
+        text-align: center;
     }
 
-    .text-area-2 h2, 
-    .text-area-2 h1, 
-    .text-area-2 p {
-        margin: 0; /* Remove excess margins */
+    .reader .text-area-2 h2, 
+    .reader .text-area-2 h1, 
+    .reader .text-area-2 p {
+        margin: 0;
         color:#634832;
         transform: scale(0.8);
     }
 
     .price-button {
-        flex-direction: column; /* Stack the button and price */
+        flex-direction: column;
         align-items: center;
         margin-top: 20px;
     }
@@ -517,18 +516,22 @@ body, html{
     .price-button .brew-button {
         width: 140px;
         height: 40px;
-        margin-left: 0; /* Reset margins */
+        margin-left: 0;
         margin-top: 10px;
+        align-items: center;
+        justify-content: center;
     }
 
     .price-button .brew-button p {
-        font-size: 24px;
+        align-items: center;
     }
 
-    .image-area {
-        justify-content: center; /* Center the image */
+    .reader .image-area {
+        justify-content: center;
         align-items: center;
-        transform: scale(0.8); /* Scale down the image */
+        transform: scale(0.8);
+        margin-top: -80px;
+        margin-bottom: 40px;
     }
 
     .image-1 .img-2 {
@@ -538,11 +541,13 @@ body, html{
 
 
 @media (max-width: 480px){
-    .text-area{
+    .reader .text-area{
         transform: scale(0.7);
+        margin-bottom: -90px;
+        margin-top: 110px;
     }
 
-    .text-area-2{
+    .reader .text-area-2{
         margin-bottom: 0;
     }
 
@@ -550,15 +555,16 @@ body, html{
         color: white;
     }
 
-    .text-area-2 .line{
+    .reader .text-area-2 .line{
         color:white;
     }
 
-    .image-area {
-        margin-top: 0;
-        justify-content: center; /* Center the image */
+    .reader .image-area {
+        margin-top: -90px;
+        margin-bottom: -50px;
+        justify-content: center;
         align-items: center;
-        transform: scale(0.5); /* Scale down the image */
+        transform: scale(0.5);
     }
 }
 
@@ -567,6 +573,7 @@ body, html{
 .reader-2{
     display: grid;
     grid-template-columns: 10% 20% 60% 10%;
+    margin-bottom: 100px;
 }
 .reader-2-image{
     grid-column-start: 2;
@@ -614,7 +621,6 @@ body, html{
 }
 .reader-2-text-price-button{
     display: flex;
-    /* border: 2px solid black; */
     margin-top: 20px;
 }
 .reader-2-text-price-button .price{
@@ -623,7 +629,6 @@ body, html{
     font-family: 'Inria Serif', serif;
 }
 .reader-2-text-price-button .brew-button{
-    /* border: 2px solid red; */
     background: #38220F;
     width: 160px;
     height: 45px;
@@ -651,6 +656,7 @@ body, html{
 @media (max-width: 768px){
     .reader-2{
         display: flex;
+        margin-bottom: 0px;
     }
     .reader-2-image img{
         transform: scale(0.8);
@@ -660,30 +666,49 @@ body, html{
         max-width: 50%;
         transform: scale(0.8);
     }
+
+    .reader-2-text-price-button .brew-button{
+    }
 }
 
 @media (max-width: 480px){
     .reader-2{
         display: flex;
         flex-direction: column;
-        background-color: white;
+        background-color: #ECE0D1;
     }
     .reader-2-image{
         grid-column-start: 1;
         display: block;
         justify-content: center;
         align-items: center;
+        margin-bottom: -100px;
+        margin-top: -70px;
+        margin-left: 20px;
+        margin-right: -50px;
     }
     .reader-2-image img{
         width: 100%;
         margin-bottom: 0px;
     }
     .reader-2-text{
+        margin-top: -70px;
         transform: scale(0.7);
         display: flex;
         align-items: flex-start;
         justify-content: center;
         flex-direction: column;
+        text-align: center;
+        margin-left: -10px;
+    }
+
+    .reader-2-text h2{
+        width: 100%;
+    }
+
+    .reader-2-text-price-button .brew-button{
+        margin-right: 40px;
+        margin-top: 6%;
     }
 }
 
@@ -738,7 +763,6 @@ hr{
     align-items: center;
     width: 345px;
     height: 500px;
-    /* border: 2px solid black; */
     box-shadow: 0px 4px 45px 1px rgba(99, 72, 50, 0.23);
     transition: all 0.3s ease-in-out;
 }
@@ -758,7 +782,6 @@ hr{
 }
 .menu-button{
     display: flex;
-    /* border: 2px solid black; */
 }
 .menu-button .price{
     font-size: 40px;
@@ -808,18 +831,17 @@ hr{
     margin-bottom: 11px;
 }
 @media (max-width: 768px) {
-    /* Medium screens (tablets or medium-sized devices) */
     .menu {
-        grid-template-columns: 1fr 1fr; /* 2 columns */
+        grid-template-columns: 1fr 1fr;
     }
 
     .menu-3 {
-        grid-column-start: 1; /* Moves menu-3 below the other two if needed */
-        margin-top: 20px; /* Adds spacing between menu-3 and the others */
+        grid-column-start: 1;
+        margin-top: 20px;
     }
 
     .inner-menu-1, .inner-menu-2, .inner-menu-3 {
-        width: 280px; /* Reduces width to fit smaller screens */
+        width: 280px;
     }
     .reader-3 .menu .menu-button{
         transform: scale(0.8);
@@ -838,7 +860,7 @@ hr{
         transform: scale(0.9);
     }
     .menu {
-        grid-template-columns: 1fr; /* Stacks the items vertically */
+        grid-template-columns: 1fr;*/
         transform: scale(0.9);
     }
     .menu-3{
@@ -846,8 +868,8 @@ hr{
     }
 
     .inner-menu-1, .inner-menu-2, .inner-menu-3 {
-        width: 100%; /* Full width for mobile */
-        height: auto; /* Makes height auto to maintain aspect ratio */
+        width: 100%;
+        height: auto;
     }
 }
 
@@ -893,12 +915,10 @@ hr{
     color: #38220F;
 }
 .reader-4 .reader-4-button{
-    /* border: 2px solid red; */
     background: #ECE0D1;
     width: 160px;
     height: 45px;
     border-radius: 23px;
-    /* margin-left: 34px; */
     outline: 1px solid #38220F;
     cursor: pointer;
     transition: .3s;
@@ -907,7 +927,6 @@ hr{
     background:#38220F;
     transform: translateY(-5px);
     box-shadow: 1px 0px 10px 0px;
-    /* outline: 1px solid #ECE0D1; */
 }
 .reader-4 .reader-4-button:hover .learn{
     color:#fff;
@@ -926,51 +945,64 @@ hr{
     transition: all 0.3s ease-in-out;
     margin: 10px;
 }
-/* Media Query for Responsive Design */
+
 @media screen and (max-width: 768px) {
-    /* Make layout stacked for smaller screens */
     .reader-4-rectangle {
         grid-template-columns: 100%;
         height: auto;
     }
 
+    .reader-4 .reader-4-text-area{
+        margin-top: 20px;
+    }
     .reader-4 .reader-4-text-area,
     .reader-4 .reader-4-image-area{
-        padding-left: 10px; /* Reduce padding on smaller screens */
+        padding-left: 10px;
         padding-right: 10px;
     }
 
+    .reader-4 .reader-4-image-area{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
     .reader-4 .reader-4-image-area img{
-        height: 250px; /* Image will shrink to a reasonable size */
-        border: 10px solid #DBC1AC; /* Adjust border size to fit image */
+        height: 250px;
+        border: 10px solid #DBC1AC;
     }
 }
 
 @media screen and (max-width: 480px) {
-    /* Further reduce the image size and stack the content */
     .reader-4 .reader-4-image-area img{
-        height: 180px; /* Even smaller image on very small screens */
-        border: 5px solid #DBC1AC; /* Smaller border */
+        height: 180px;
+        border: 5px solid #DBC1AC;
     }
 
     .reader-4 .reader-4-text-area h3 {
-        font-size: 24px; /* Smaller text on smaller screens */
+        font-size: 24px;
     }
 
     .reader-4 .reader-4-text-area .reader-4-line {
-        font-size: 18px; /* Smaller line text on small screens */
-        width: 100%; /* Full width on small screens */
+        font-size: 18px;
+        width: 100%;
     }
 
     .reader-4 .reader-4-button {
-        width: 140px; /* Adjust button size */
+        width: 140px;
+    }
+
+    .reader-4-image-area{
+        margin-bottom: 10px;
+        margin-top: 10px;
     }
 }
+
+
+
+
+
+
+
 /* reader-5 */
-
-
-
-/* Updated specific classes for uniqueness */
 .section-reader-5 {
     display: flex;
     align-items: center;
@@ -982,21 +1014,21 @@ hr{
     font-size: 48px;
     color: #38220F;
     font-weight: 400;
-    text-align: center; /* Added for better alignment */
+    text-align: center;
 }
 .section-reader-5-heading p {
     font-size: 30px;
     color: #634832;
     text-align: center;
-    width: 100%; /* Adjusted for responsiveness */
-    max-width: 500px; /* Limit maximum width */
+    width: 100%;
+    max-width: 500px;
 }
 .section-reader-5-rectangle {
     display: grid;
     grid-template-columns: 50% 50%;
     width: 100%;
     margin-top: 70px;
-    gap: 20px; /* Added spacing between columns */
+    gap: 20px;
 }
 .section-reader-5-rectangle .image-area {
     display: flex;
@@ -1008,7 +1040,7 @@ hr{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center; /* Added for better alignment */
+    text-align: center;
 }
 .section-reader-5-rectangle .text-area h2 {
     font-size: 32px;
@@ -1018,7 +1050,7 @@ hr{
 }
 .section-reader-5-line {
     width: 100%;
-    max-width: 410px; /* Adjusted for responsiveness */
+    max-width: 410px;
     font-size: 24px;
     color: #967259;
     margin-bottom: 35px;
@@ -1055,44 +1087,54 @@ hr{
 .section-reader-5 img {
     border: 15px solid #D6C2B3;
     height: 325px;
-    max-width: 100%; /* Ensure responsiveness */
+    max-width: 100%;
 }
 
-/* Media queries for responsiveness */
-
-/* Medium screens */
 @media (max-width: 768px) {
     .section-reader-5-rectangle {
-        gap: 10px; /* Reduce space between areas */
+        gap: 10px;
     }
     .section-reader-5-heading h1 {
-        font-size: 40px; /* Resize heading */
+        font-size: 40px;
     }
     .section-reader-5-heading p {
-        font-size: 24px; /* Resize text */
+        font-size: 24px;
     }
     .section-reader-5-rectangle .text-area{
         transform: scale(0.8);
     }
     .section-reader-5 img {
-        height: 275px; /* Shrink image size */
+        height: 275px;
     }
 }
 
-/* Mobile screens */
 @media (max-width: 480px) {
     .section-reader-5{
         background-color: #ECE0D1;
     }
+    
     .section-reader-5-rectangle {
-        grid-template-columns: 1fr; /* Stack items vertically */
-        gap: 30px; /* Add space between stacked items */
+        grid-template-columns: 1fr;
+        gap: 30px;
     }
+
     .section-reader-5-heading h1 {
-        font-size: 36px; /* Adjust font size */
+        font-size: 36px;
     }
     .section-reader-5-heading p {
-        font-size: 20px; /* Resize description */
+        font-size: 20px;
+    }
+
+    .section-reader-5-rectangle-1 .text-area{
+        margin-top: -20px;
+    }
+
+    .section-reader-5-rectangle-2 .text-area{
+        margin-top: -80px;
+    }
+
+    .section-reader-5-rectangle-2 .image-area{
+        margin-top: 0;
     }
 }
 
@@ -1180,6 +1222,18 @@ hr{
     .reader-6-rectangle .text-area{
         transform: scale(0.7);
     }
+
+    .section-reader-5-heading{
+        margin-top: -50px;
+    }
+
+    .section-reader-5-rectangle-1 .image-area{
+        margin-top: -80px;
+    }
+
+    .section-reader-5-rectangle-2 .image-area{
+        margin-bottom: 20px;
+    }
 }
 
 @media (max-width: 480px){
@@ -1200,7 +1254,8 @@ hr{
     }
     .reader-6-rectangle .image-area{
         width: 100%;
-        margin-bottom: 0;
+        margin-bottom: -160px;
+        margin-top: -90px;
     }
     .reader-6-rectangle .text-area{
         width: 100%;
@@ -1216,7 +1271,6 @@ hr{
     margin-top: 100px;
 }
 
-/* Updated class names to be more specific */
 .reader-7-rectangle{
     display: grid;
     grid-template-columns: 50% 50%;
@@ -1246,14 +1300,12 @@ hr{
     margin-left: 80px;
 }
 
-/* For centering the *P25 delivery charge text */
 .reader-7 .text-area .delivery-charge{
     text-align: center;
     font-size: 18px;
     color: #634832;
 }
 
-/* Button styling */
 .reader-7 .button{
     display: flex;
     justify-content: center;
@@ -1297,32 +1349,30 @@ hr{
     opacity: .85;
 }
 
-/* Media queries for responsiveness */
 @media (max-width: 1200px) {
     .reader-7-rectangle{
-        grid-template-columns: 60% 40%; /* Slightly reduce space on smaller screens */
+        grid-template-columns: 60% 40%;
     }
 
     .reader-7 .text-area .reader-7-line{
-        margin-left: 50px; /* Adjust for smaller screens */
+        margin-left: 50px;
     }
 
     .reader-7 .image-area img{
-        height: 350px; /* Scale down image */
+        height: 350px;
     }
 }
 
 @media (max-width: 768px) {
     .reader-7-rectangle{
-        grid-template-columns: 100%; /* Stack content vertically */
+        grid-template-columns: 100%;
         height: auto;
     }
 
     .reader-7 .image-area img{
-        height: 250px; /* Further scale down the image */
+        height: 250px;
     }
 
-    /* Scale down text and button */
     .reader-7 .text-area h3{
         font-size: 32px;
     }
@@ -1344,7 +1394,9 @@ hr{
 }
 
 @media (max-width: 480px) {
-    /* Further adjust for mobile screens */
+    .reader-7-rectangle{
+        margin-top: -80px;
+    }
     .reader-7 .text-area h3{
         font-size: 28px;
     }
@@ -1364,6 +1416,10 @@ hr{
         font-size: 14px;
     }
 
+    .reader-7 .image-area{
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
     
 }
 
@@ -1387,8 +1443,13 @@ footer span:hover{
     display: grid;
     grid-template-columns: 10% repeat(5, 1fr) ;
     color: #fff;
-    
 }
+
+.foot-content{
+    display: flex;
+    flex-direction: column;
+}
+
 .about{
     grid-column-start: 2;
 }
@@ -1398,7 +1459,7 @@ footer span:hover{
 }
 .about span, .order span, .location span, .social span{
     font-size: 24px;
-    font-weight: 400
+    font-weight: 400;
     margin-bottom: 40px;
     margin-top: 50px;;
     opacity: 1;
@@ -1414,7 +1475,6 @@ footer span:hover{
 .language{
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
 }
 .language span{
     font-size: 24px;
@@ -1430,16 +1490,17 @@ footer span:hover{
 
 
 @media(max-width: 768px){
-    .about, .order, .location, .social{
+    .about, .order, .location, .social, .language{
         padding-left: 10px;
         padding-right: 10px;
+        text-align: center;
     }
 }
 
 @media(max-width: 480px){
     footer .foot{
-        grid-template-columns: 1fr;  /* Stack all sections in a single column */
-        padding: 0 10px;  /* Optional: Add padding for better spacing */
+        grid-template-columns: 1fr;
+        padding: 0 10px;
     }
 
     .about{
@@ -1447,18 +1508,26 @@ footer span:hover{
     }
     
     .about, .order, .location, .social, .language{
-        width: 100%;  /* Ensure they take up full width */
-        margin-bottom: 20px;  /* Add some spacing between sections */
+        width: 100%;
+        margin-bottom: 10px;
     }
 
     .about span, .order span, .location span, .social span, .language span{
-        font-size: 20px;  /* Adjust font size for smaller screens */
-        margin-bottom: 20px;  /* Adjust spacing for better readability */
+        font-size: 20px;
+        margin-bottom: 5px;
+        margin-top: 5px;
     }
 
+    .about span{
+        margin-top: 50px;
+    }
+
+    .language span{
+        margin-bottom: 10px;
+    }
     .about a, .order a, .location a, .social a{
-        font-size: 18px;  /* Adjust font size for better readability on smaller screens */
-        margin-bottom: 8px;  /* Adjust spacing between links */
+        font-size: 18px;
+        margin-bottom: 8px;
     }
 
     .language-picker{
@@ -1466,6 +1535,10 @@ footer span:hover{
     }
 
     .language-picker select{
-        width: 100%;  /* Ensure the language picker is full width */
+        width: 100%;
+    }
+
+    .about-content, .order-content, .location-content, .social-content{
+        display: none;
     }
 }

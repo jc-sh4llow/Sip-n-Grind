@@ -18,6 +18,7 @@ body, html{
     display: grid;
     grid-template-columns: 13% 64% 23%;
     margin-top: 15px;
+    align-items: center;
 }
 .text-menu{
     display: flex;
@@ -29,15 +30,19 @@ body, html{
     display: flex;
     margin-right: 40px;
 }
-.list li a::after{
+.list li a::after {
     content: "";
     position: absolute;
-    transition: .3s;
+    transition: width 0.3s ease;
     height: 3px;
     width: 0%;
-    bottom: 1px;
-    right: 1px;
-    background:#967259;
+    bottom: 0;
+    left: 0;
+    background: #967259;
+    z-index: -1;
+}
+.list li a:hover{
+    color: #634832;
 }
 .list li a:hover::after{ 
     width: 100%;
@@ -52,6 +57,7 @@ body, html{
     font-size: 17px;
     color: #38220F;
     position: relative;
+    transition: color 0.3s ease;
 }
 .logo{
     display: flex;
@@ -158,17 +164,49 @@ body, html{
 @media (max-width: 1024px){
 }
 @media (max-width: 768px) {
+    .navbar .logo, .hamburger{
+        transition: transform 0.6s ease, opacity 0.6s ease;
+    }
+    
     .navbar {
         position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
+    }
+
+    .nav{
+        display: flex;
         justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .navbar .logo.slide-out{
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    .navbar .logo.slide-in{
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .navbar .hamburger.slide-out{
+        transform: translateX(50px);
+        opacity: 0;
+    }
+
+    .navbar .hamburger.slide-in{
+        transition: transform 0.6s ease;
     }
 
     .logo{
         flex: 1;
         padding-left: 10px;
+        left: 0px;
     }
 
     .logo.top {
@@ -177,6 +215,7 @@ body, html{
         left: 50%;
         transform: translateX(-50%);
         z-index: 10;
+        padding-left: 0px;
     }
 
     .navbar-items {
@@ -185,6 +224,9 @@ body, html{
         align-items: center;
         justify-content: center;
         width: 100%;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        transform: translateY(-100%);
+        opacity: 0;
     }
 
     .navbar-items.show {
@@ -192,6 +234,13 @@ body, html{
         animation: expand-navbar 0.3s ease;
         margin-top: 130px;
         width: 100%;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .navbar-items.hide{
+        opacity: 0;
+        transform: translateY(-100%);
     }
 
     .navbar-items .text-menu .list {
@@ -199,13 +248,14 @@ body, html{
         flex-direction: column;
         padding: 0;
         margin: 0;
+        text-align: center;
     }
 
     .navbar-items .text-menu .list li {
         margin: 10px 0;
     }
 
-    .search-bar, .location-icon {
+    .search-icon-container, .location-icon {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -214,6 +264,8 @@ body, html{
 
     .hamburger {
         display: block;
+        right: 0px;
+        margin-right: 30px;
     }
 
     .hamburger.hidden{
@@ -222,7 +274,57 @@ body, html{
 
     .navbar-right{
         max-width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
+
+    .search-bar{
+        display: none;
+        width: 100%;
+        text-align: center;
+        margin-top: 20px;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    .search-bar.show{
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .search-icon-container{
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #392210;
+        margin-right: 25px;
+    }
+
+    .search-icon-container.active{
+        padding: 7.5px;
+        background-color: #392210;
+        border-radius: 50%;
+    }
+
+    .search-icon-container.active i{
+        color: #ECE0D1;
+    }
+
+    .location-icon{
+        margin-right: 0;
+        margin-left: 25;
+    }
+
+    .location-icon img{
+        margin-top: 0;
+        margin-right: 0;
+    }
+
+
 }
 
 
@@ -657,7 +759,6 @@ hr{
 .menu-button{
     display: flex;
     /* border: 2px solid black; */
-    margin-top: 20px;
 }
 .menu-button .price{
     font-size: 40px;
@@ -665,7 +766,6 @@ hr{
     font-family: 'Inria Serif', serif;
 }
 .menu-button .brew-button{
-    /* border: 2px solid red; */
     background: #38220F;
     width: 160px;
     height: 45px;

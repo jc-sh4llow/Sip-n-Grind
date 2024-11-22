@@ -70,6 +70,7 @@ body, html{
     display: flex;
     justify-content: space-around;
     align-items: center;
+    margin-right: -400px;
 }
 .outer-search{
     width: 202px;
@@ -80,6 +81,10 @@ body, html{
     justify-content: center;
     align-items: center;
 }
+.search-icon-container{
+    display: none;
+}
+
 .search-icon img{
     width: 21px;
     margin-left: 10px;
@@ -113,8 +118,8 @@ body, html{
 }
 
 .location-icon{
-    margin-right: 50px;
-    margin-left: 50px;
+    margin-right: 0px;
+    margin-left: 25px;
 }
 
 .location-icon img{
@@ -862,6 +867,7 @@ hr{
     .menu {
         grid-template-columns: 1fr;*/
         transform: scale(0.9);
+        max-width: 95%;
     }
     .menu-3{
         margin-top: 0;

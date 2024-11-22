@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const locationDropdownMenu = document.getElementById('location-dropdown-menu')
     const socialDropdown = document.getElementById('social-dropdown')
     const socialDropdownMenu = document.getElementById('social-dropdown-menu')
+    
 
     // Toggle the navbar visibility when the hamburger button is clicked
     hamburgerBtn.addEventListener('click', (e) => {

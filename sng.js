@@ -5,14 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('.navbar');
     const searchIconContainer = document.querySelector('.search-icon-container');
     const searchBar = document.querySelector('.search-bar');
-    const aboutDropdown = document.getElementById('about-dropdown')
-    const aboutDropdownMenu = document.getElementById('about-dropdown-menu')
-    const orderDropdown = document.getElementById('order-dropdown')
-    const orderDropdownMenu = document.getElementById('order-dropdown-menu')
-    const locationDropdown = document.getElementById('location-dropdown')
-    const locationDropdownMenu = document.getElementById('location-dropdown-menu')
-    const socialDropdown = document.getElementById('social-dropdown')
-    const socialDropdownMenu = document.getElementById('social-dropdown-menu')
     
 
     // Toggle the navbar visibility when the hamburger button is clicked
@@ -62,10 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     searchIconContainer.addEventListener('click', () => {
-        searchBar.classList.toggle('show'); // Show/hide the search bar
-        searchIconContainer.classList.toggle('active'); // Toggle the 'active' class for background and icon color
-
-        // Optionally, focus on the search input if you want it to automatically start typing when the bar is expanded
+        searchBar.classList.toggle('show');
+        searchIconContainer.classList.toggle('active');
         if (searchBar.classList.contains('show')) {
             searchBar.querySelector('input').focus();
         }
@@ -109,44 +99,53 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    aboutDropdown.addEventListener("click", () =>{
-        aboutDropdownMenu.classList.toggle("about-content");
-    });
+    const aboutDropdown = document.getElementById('about-dropdown')
+    const aboutDropdownMenu = document.getElementById('about-dropdown-menu')
+    const orderDropdown = document.getElementById('order-dropdown')
+    const orderDropdownMenu = document.getElementById('order-dropdown-menu')
+    const locationDropdown = document.getElementById('location-dropdown')
+    const locationDropdownMenu = document.getElementById('location-dropdown-menu')
+    const socialDropdown = document.getElementById('social-dropdown')
+    const socialDropdownMenu = document.getElementById('social-dropdown-menu')
+    const toggleDropdown = (dropdown, dropdownMenu) =>{
+        dropdownMenu.classList.toggle('active');
+
+        if(dropdownMenu.classList.contains('active')){
+            dropdownMenu.scrollIntoView({behavior: "smooth", block: "start"})
+        }
+    };
+
+    aboutDropdown.addEventListener("click", () => toggleDropdown(aboutDropdown, aboutDropdownMenu));
+    orderDropdown.addEventListener("click", () => toggleDropdown(orderDropdown, orderDropdownMenu));
+    locationDropdown.addEventListener("click", () => toggleDropdown(locationDropdown, locationDropdownMenu));
+    socialDropdown.addEventListener("click", () => toggleDropdown(socialDropdown, socialDropdownMenu));
 
     document.addEventListener("click", (event) => {
-        if (aboutDropdown.contains(event.target) && !aboutDropdownMenu.contains(event.target)){
-            aboutDropdownMenu.classList.add("hidden");
+        if (!aboutDropdown.contains(event.target) && !aboutDropdownMenu.contains(event.target)) {
+            aboutDropdownMenu.classList.remove('active');
+        }
+        if (!orderDropdown.contains(event.target) && !orderDropdownMenu.contains(event.target)) {
+            orderDropdownMenu.classList.remove('active');
+        }
+        if (!locationDropdown.contains(event.target) && !locationDropdownMenu.contains(event.target)) {
+            locationDropdownMenu.classList.remove('active');
+        }
+        if (!socialDropdown.contains(event.target) && !socialDropdownMenu.contains(event.target)) {
+            socialDropdownMenu.classList.remove('active');
         }
     });
 
-    orderDropdown.addEventListener("click", () =>{
-        orderDropdownMenu.classList.toggle("order-content");
-    });
-
-    document.addEventListener("click", (event) => {
-        if (orderDropdown.contains(event.target) && !orderDropdownMenu.contains(event.target)){
-            orderDropdownMenu.classList.add("hidden");
-        }
-    });
-
-    locationDropdown.addEventListener("click", () =>{
-        locationDropdownMenu.classList.toggle("location-content");
-    });
-
-    document.addEventListener("click", (event) => {
-        if (locationDropdown.contains(event.target) && !locationDropdownMenu.contains(event.target)){
-            locationDropdownMenu.classList.add("hidden");
-        }
-    });
-
-    socialDropdown.addEventListener("click", () =>{
-        socialDropdownMenu.classList.toggle("social-content");
-    });
-
-    document.addEventListener("click", (event) => {
-        if (socialDropdown.contains(event.target) && !socialDropdownMenu.contains(event.target)){
-            socialDropdownMenu.classList.add("hidden");
-        }
+    window.addEventListener('scroll', () => {
+        // Check if dropdowns are scrolled out of the viewport
+        const dropdowns = [aboutDropdownMenu, orderDropdownMenu, locationDropdownMenu, socialDropdownMenu];
+        
+        dropdowns.forEach((dropdownMenu) => {
+            const rect = dropdownMenu.getBoundingClientRect();
+            // Check if dropdown is fully out of the viewport (above or below the window)
+            if (rect.bottom < 0 || rect.top > window.innerHeight) {
+                dropdownMenu.classList.remove('active');
+            }
+        });
     });
 
 });

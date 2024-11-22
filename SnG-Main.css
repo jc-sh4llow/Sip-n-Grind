@@ -289,6 +289,7 @@ body, html{
         width: 100%;
         text-align: center;
         margin-top: 20px;
+        margin-right: 0;
         transition: opacity 0.3s ease, transform 0.3s ease;
         opacity: 0;
         transform: translateY(-20px);
@@ -856,9 +857,10 @@ hr{
 @media (max-width: 480px) {
     .reader-3{
         background-color: white;
+        margin-bottom: -80px;
     }
     .heading{
-        margin-top: 20px;
+        margin-top: 10px;
         margin-bottom: 0;
     }
     .heading h1, p{
@@ -868,6 +870,7 @@ hr{
         grid-template-columns: 1fr;*/
         transform: scale(0.9);
         max-width: 95%;
+        margin-top: 10px;
     }
     .menu-3{
         margin-top: 0;
@@ -1431,120 +1434,126 @@ hr{
 
 
 /* footer  */
-footer{
+footer {
     background: #634832;
 }
-footer span{
+footer span {
     font-family: 'Inter', sans-serif;
     font-weight: 300;
     opacity: .7;
     margin-bottom: 40px;
-    cursor:pointer;
+    cursor: pointer;
     transition: .2s;
 }
-footer span:hover{
+footer span:hover {
     opacity: 1;
 }
-.foot{
+.foot {
     display: grid;
-    grid-template-columns: 10% repeat(5, 1fr) ;
+    grid-template-columns: 10% repeat(5, 1fr);
     color: #fff;
 }
 
-.foot-content{
+.foot-content {
     display: flex;
     flex-direction: column;
 }
 
-.about{
+.about {
     grid-column-start: 2;
 }
-.about, .order, .location, .social{
+.about, .order, .location, .social {
     display: flex;
     flex-direction: column;
 }
-.about span, .order span, .location span, .social span{
+.about span, .order span, .location span, .social span {
     font-size: 24px;
     font-weight: 400;
     margin-bottom: 40px;
-    margin-top: 50px;;
+    margin-top: 50px;
     opacity: 1;
 }
 
-.about a, .order a, .location a, .social a{
+.about a, .order a, .location a, .social a {
     font-size: 20px;
     font-family: 'Inter', sans-serif;
     text-decoration: none;
     margin-bottom: 10px;
     color: #ffffff9d;
 }
-.language{
+
+.language {
     display: flex;
     flex-direction: column;
 }
-.language span{
+
+.language span {
     font-size: 24px;
     margin-bottom: 40px;
     font-weight: 400;
     margin-top: 50px;
     opacity: 1;
 }
-.language-picker select, .language-picker option{
+.language-picker select, .language-picker option {
     font-family: 'Inter', sans-serif;
 }
 
-
-
-@media(max-width: 768px){
-    .about, .order, .location, .social, .language{
+@media (max-width: 768px) {
+    .about, .order, .location, .social, .language {
         padding-left: 10px;
         padding-right: 10px;
         text-align: center;
     }
 }
 
-@media(max-width: 480px){
-    footer .foot{
+@media (max-width: 480px) {
+    footer .foot {
         grid-template-columns: 1fr;
         padding: 0 10px;
     }
 
-    .about{
+    .about {
         grid-column-start: 1;
     }
-    
-    .about, .order, .location, .social, .language{
+
+    .about, .order, .location, .social, .language {
         width: 100%;
         margin-bottom: 10px;
     }
 
-    .about span, .order span, .location span, .social span, .language span{
+    .about span, .order span, .location span, .social span, .language span {
         font-size: 20px;
         margin-bottom: 5px;
         margin-top: 5px;
     }
 
-    .about span{
+    .about span {
         margin-top: 50px;
     }
 
-    .language span{
+    .language span {
         margin-bottom: 10px;
     }
-    .about a, .order a, .location a, .social a{
+
+    .about a, .order a, .location a, .social a {
         font-size: 18px;
         margin-bottom: 8px;
     }
 
-    .language-picker{
+    .language-picker {
         margin-bottom: 55px;
     }
 
-    .language-picker select{
+    .language-picker select {
         width: 100%;
     }
 
-    .about-content, .order-content, .location-content, .social-content{
+    .about-content, .order-content, .location-content, .social-content {
         display: none;
+    }
+
+    .about-content.active, .order-content.active, .location-content.active, .social-content.active {
+        display: flex;
+        flex-direction: column;
     }
 }

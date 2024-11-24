@@ -8,13 +8,55 @@ $database = "sipngrind"; // Replace with your database name
 // Create connection
 $conn = new mysqli($host, $user, $password, $database);
 
-// Check connection
-/*if ($conn->connect_error) {
+if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
-} else {
-    echo "Connection successful!";
-}*/
-?> 
+}
+
+$query = "SELECT m.name AS new_name, m.description AS new_description, m.image AS new_image, i.price AS new_price 
+          FROM menu_items m
+          JOIN item_sizes i ON m.item_id = i.item_id
+          WHERE m.is_newest_drink = 1 AND i.size = 'Small' LIMIT 1";
+
+$result_new = $conn->query($query);
+
+$newName = "No newest drink available";
+$newDescription = "Please update the database.";
+$newImage = "default_image.jpg";
+$newPrice = "0";
+
+if ($result_new && $result_new->num_rows > 0) {
+    $row = $result_new->fetch_assoc();
+    $newName = $row['new_name'];
+    $newDescription = $row['new_description'];
+    $newImage = $row['new_image'] ? $row['new_image'] : 'default_image.jpg';
+    $newPrice = $row['new_price'];
+}
+
+$query_popular = "SELECT m.name AS popular_name, m.description AS popular_description, m.image AS popular_image, i.price AS popular_price
+        FROM menu_items m
+        JOIN item_sizes i ON m.item_id = i.item_id
+        WHERE m.is_popular = 1 AND i.size = 'Small' LIMIT 3";
+
+$result_popular = $conn->query($query_popular);
+
+$popularName = "No popular drink available";
+$popularDescription = "No description available";
+$popularImage = "default_image.jpg";
+$popularPrice = "0";
+
+$popularDrinks = array();
+
+if ($result_popular && $result_popular->num_rows > 0) {
+    while($row = $result_popular->fetch_assoc()){
+        $popularDrinks[] = array(
+            'name' => $row['popular_name'],
+            'description' => $row['popular_description'],
+            'image' => !empty($row['popular_image']) ? $row['popular_image'] : 'default_image.jpg',
+            'price' => !empty($row['popular_price']) ? $row['popular_price'] : '0'
+        );
+    }
+}
+?>
 
 <html lang="en">
 
@@ -102,15 +144,15 @@ $conn = new mysqli($host, $user, $password, $database);
     </section>
     <section class="reader-2">
         <div class="reader-2-image">
-            <img src="./images/hotchoco.png" alt="">
+            <img src="<?php echo $newImage; ?>" alt="Product Image">
         </div>
         <div class="reader-2-text">
             <div class="reader-2-text-area">
                 <h1>Try Our Newest Drink!</h1>
-                <h2>Cocoa Magic</h2>
-                <p class="line">“Rich and  velvety hot chocolate drink that will keep you warm and cozy.</p>
+                <h2><?php echo $newName; ?></h2>
+                <p class="line">"<?php echo $newDescription; ?>"</p>
                 <div class="reader-2-text-price-button">
-                    <div class="price">Starts at P70.00</div>
+                    <div class="price">Starts at P<?php echo number_format($newPrice, 2); ?></div>
                     <div class="brew-button">
                         <p class="brew">Brew</p>
                     </div>
@@ -125,57 +167,30 @@ $conn = new mysqli($host, $user, $password, $database);
         <div class="heading">
             <h1>Popular</h1>
             <p>Try our Best-Seller Drinks
-                while grindin'!</p>
+                while grindin</p>
         </div>
         <div class="menu">
-            <div class="menu-1">
-                <div class="inner-menu-1">
-                    <img src="./images/icedame.png" alt="">
-                    <div class="menu-desc">
-                        <h1>Iced</h1>
-                        <h1>Americano</h1>
-                        <p class="line-2">A cold, refreshing take on the traditional Americano.</p>
-                    </div>
-                    <div class="menu-button">
-                        <div class="price">P75.00</div>
-                        <div class="brew-button">
-                            <p class="brew">Brew</p>
+            <?php if (!empty($popularDrinks)): ?>
+                <?php foreach ($popularDrinks as $index => $popular): ?>
+                    <div class="menu-<?php echo $index + 1; ?>">
+                        <div class="inner-menu-<?php echo $index + 1; ?>">
+                            <img src="<?php echo $popular['image']; ?>" alt="">
+                            <div class="menu-desc">
+                                <h1><?php echo $popular['name']; ?></h1>
+                                <p class="line-2"><?php echo $popular['description']; ?></p>
+                            </div>
+                            <div class="menu-button">
+                                <div class="price">P<?php echo number_format($popular['price'], 2); ?></div>
+                                <div class="brew-button">
+                                    <p class="brew">Brew</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="menu-2">
-                <div class="inner-menu-2">
-                    <img src="./images//strawberry.png" alt="">
-                    <div class="menu-desc">
-                        <h1>Berry Frost</h1>
-                        <h1>Frappe</h1>
-                        <p class="line-2">A refreshing strawberry-flavored frappe. Perfect for berry lovers.</p>
-                    </div>
-                    <div class="menu-button">
-                        <div class="price">P90.00</div>
-                        <div class="brew-button">
-                            <p class="brew">Brew</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="menu-3">
-                <div class="inner-menu-3">
-                    <img src="./images/caramel.png" alt="">
-                    <div class="menu-desc">
-                        <h1>Caramel</h1>
-                        <h1>Delight</h1>
-                        <p class="line-2">Rich brewed coffee with caramel syrup.</p>
-                    </div>
-                    <div class="menu-button">
-                        <div class="price">P75.00</div>
-                        <div class="brew-button">
-                            <p class="brew">Brew</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No popular drinks available.</p>
+            <?php endif; ?>
         </div>
     </section>
 
@@ -235,11 +250,11 @@ $conn = new mysqli($host, $user, $password, $database);
             </div>
             <div class="text-area">
                 <h3>About us</h3>
-                <p class="reader-6-line">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis ullamcorper elit a egestas. 
-                Sed nec tellus ac arcu malesuada consequat at ut massa. Morbi ut ornare neque. Class aptent taciti sociosqu ad litora torquent 
-                per conubia nostra, per inceptos himenaeos. Quisque rutrum hendrerit purus a aliquet.</p>
+                <p class="reader-6-line">
+                At Sip N Grind, we craft experiences, turning every sip into an adventure. From the aroma of freshly ground beans to the warmth of a perfect brew, we bring coffee closer to you. Our space fosters connection and creativity, celebrating flavor, passion, and community.
+                </p>
                 <div class="button">
-                    <p class="learn">Learn</p>
+                    <p class="learn">Discover</p>
                 </div>
             </div>
         </div>

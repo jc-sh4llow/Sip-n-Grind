@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Page</title>
+  <link rel="stylesheet" href="orderpage.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="nav">
+        <div class="logo-hamburger">
+            <div class="logo">
+                <img src="./Images/Sip__n_grind_logo.png" alt="SnG Logo">
+            </div>
+        </div>
+        <div class="navbar-items">
+            <div class="text-menu">
+                <ul class="list">
+                    <li><a href="#" class="links">Home</a></li>
+                    <li><a href="#" class="links">Menu</a></li>
+                    <li><a href="#" class="links">Merchandises</a></li>
+                    <li><a href="#" class="links">Delivery</a></li>
+                    <li><a href="#" class="links">About Us</a></li>
+                </ul>
+                <div class="navbar-right">
+                    <div class="search-bar">
+                        <div class="outer-search">
+                            <div class="search">
+                                <div class="search-icon">
+                                    <img src="./images/searchicon.png" alt="Search">
+                                </div>
+                                <div class="search-text">
+                                    <input type="text" name="search" id="" placeholder="Search">
+                                </div>
+                                <div class="location-icon">
+                                    <img src="./images/locationicon.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  <!-- Main Content -->
+  <div class="main-container">
+    <!-- Menu Section -->
+    <div class="menu">
+      <h1 class="header">Our Menu</h1>
+      <div class="menu-grid">
+        <!-- Products -->
+        <div class="menu-item" data-name="Iced Creamy Latte" data-price="150">
+          <img src="./Images/caramel.png" alt="Iced Creamy Latte">
+          <h3>Iced Creamy Latte</h3>
+          <p>₱150</p>
+          <button class="add-to-cart">Add to Basket</button>
+        </div>
+        <div class="menu-item" data-name="Apple Chia Black Tea" data-price="120">
+          <img src="./Images/banana_bread.png" alt="Apple Chia Black Tea">
+          <h3>Apple Chia Black Tea</h3>
+          <p>₱120</p>
+          <button class="add-to-cart">Add to Basket</button>
+        </div>
+        <div class="menu-item" data-name="Bacon Pesto Pasta" data-price="200">
+          <img src="./Images/coffeesplash.png" alt="Bacon Pesto Pasta">
+          <h3>Bacon Pesto Pasta</h3>
+          <p>₱200</p>
+          <button class="add-to-cart">Add to Basket</button>
+        </div>
+        <div class="menu-item" data-name="Ice Caramel Latte" data-price="180">
+          <img src="./Images/icedame.png" alt="Ice Caramel Latte">
+          <h3>Ice Caramel Latte</h3>
+          <p>₱180</p>
+          <button class="add-to-cart">Add to Basket</button>
+        </div>
+        <div class="menu-item" data-name="Americano" data-price="180">
+            <img src="./Images/icedame.png" alt="Americano">
+            <h3>Americano</h3>
+            <p>₱180</p>
+            <button class="add-to-cart">Add to Basket</button>
+          </div>
+          <div class="menu-item" data-name="Vanilla Frappe" data-price="180">
+            <img src="./Images/icedame.png" alt="Vanilla Frappe">
+            <h3>Vanilla Frappe</h3>
+            <p>₱180</p>
+            <button class="add-to-cart">Add to Basket</button>
+          </div>
+      </div>
+    </div>
+
+    <!-- Basket Section -->
+    <div class="basket">
+      <h1 class="header">Your Basket</h1>
+      <div id="basket-items" class="basket-items-container">Your basket is empty.</div>
+      <div class="total">
+        <p>Total: <strong>₱<span id="total-price">0</span></strong></p>
+      </div>
+      <button id="checkout">Checkout</button>
+    </div>
+  </div>
+
+  <script src="orderpage.js"></script>
+</body>
+</html>

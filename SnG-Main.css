@@ -580,6 +580,7 @@ body, html{
     display: grid;
     grid-template-columns: 10% 20% 60% 10%;
     margin-bottom: 100px;
+    padding-top: 20px;
 }
 .reader-2-image{
     grid-column-start: 2;
@@ -663,6 +664,7 @@ body, html{
     .reader-2{
         display: flex;
         margin-bottom: 0px;
+        padding-top: 0px;
     }
     .reader-2-image img{
         transform: scale(0.8);
@@ -788,6 +790,7 @@ hr{
 }
 .menu-button{
     display: flex;
+    margin-bottom: 10px;
 }
 .menu-button .price{
     font-size: 40px;
@@ -819,22 +822,10 @@ hr{
     justify-content: center;
     font-weight: 400;
 }
-.menu-1 img{
-    width: 119px;
-    height: 207px;
-    margin-top: 22px;
-    margin-bottom: 16px;
-}
-.menu-3 img{
-    width: 172px;
-    height: 201px;
-    margin-top: 45px;
-}
-.menu-2 img{
-    width: 113px;
-    height: 219px;
-    margin-top: 16px;
-    margin-bottom: 11px;
+
+.menu-1 img, .menu-2 img, .menu-3 img{
+    max-width: 100%;
+    max-height: 50%;
 }
 @media (max-width: 768px) {
     .menu {
@@ -1179,7 +1170,7 @@ hr{
     margin-bottom: 50px;
 }
 .reader-6-rectangle .learn{
-    font-size: 32px;
+    font-size: 29px;
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -1557,3 +1548,5 @@ footer span:hover {
         flex-direction: column;
     }
 }
+
+

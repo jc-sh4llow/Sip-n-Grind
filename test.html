@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Demo</title>
+    <style>
+        .menu-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px;
+            display: inline-block;
+            width: 200px;
+            text-align: center;
+        }
+
+        .menu-item img {
+            max-width: 100%;
+        }
+
+        .size-selector {
+            margin-top: 10px;
+        }
+
+        .add-to-cart {
+            margin-top: 10px;
+        }
+
+        .basket {
+            margin-top: 30px;
+            padding: 20px;
+            border-top: 2px solid #ddd;
+        }
+
+        .basket-items-container {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Steamy Sips -->
+    <div class="menu-item">
+        <img src="Images/Steamy Sips.png" alt="Steamy Sips">
+        <h3>Steamy Sips</h3>
+        <p class="price">₱60</p>
+        <div class="size-selector">
+            <label for="size-1">Choose Size:</label>
+            <select id="size-1">
+                <option value="60">Small - ₱60</option>
+                <option value="80">Medium - ₱80</option>
+                <option value="100">Large - ₱100</option>
+            </select>
+        </div>
+        <button class="add-to-cart" data-name="Steamy Sips" data-price="60">Add to Basket</button>
+    </div>
+
+    <!-- Chill Brew -->
+    <div class="menu-item">
+        <img src="IMAGES/Chill Brew.png" alt="Chill Brew">
+        <h3>Chill Brew</h3>
+        <p class="price">₱70</p>
+        <div class="size-selector">
+            <label for="size-2">Choose Size:</label>
+            <select id="size-2">
+                <option value="70">Small - ₱70</option>
+                <option value="95">Medium - ₱95</option>
+                <option value="110">Large - ₱110</option>
+            </select>
+        </div>
+        <button class="add-to-cart" data-name="Chill Brew" data-price="70">Add to Basket</button>
+    </div>
+
+    <!-- Sweet Vanilla Dream -->
+    <div class="menu-item">
+        <img src="IMAGES/Sweet Vanilla Dream.png" alt="Sweet Vanilla Dream">
+        <h3>Sweet Vanilla Dream</h3>
+        <p class="price">₱75</p>
+        <div class="size-selector">
+            <label for="size-3">Choose Size:</label>
+            <select id="size-3">
+                <option value="75">Small - ₱75</option>
+                <option value="95">Medium - ₱95</option>
+                <option value="115">Large - ₱115</option>
+            </select>
+        </div>
+        <button class="add-to-cart" data-name="Sweet Vanilla Dream" data-price="75">Add to Basket</button>
+    </div>
+
+    <!-- Midnight Caramel Delight -->
+    <div class="menu-item">
+        <img src="IMAGES/Midnight Caramel Delight.png" alt="Midnight Caramel Delight">
+        <h3>Midnight Caramel Delight</h3>
+        <p class="price">₱75</p>
+        <div class="size-selector">
+            <label for="size-4">Choose Size:</label>
+            <select id="size-4">
+                <option value="75">Small - ₱75</option>
+                <option value="95">Medium - ₱95</option>
+                <option value="100">Large - ₱100</option>
+            </select>
+        </div>
+        <button class="add-to-cart" data-name="Midnight Caramel Delight" data-price="75">Add to Basket</button>
+    </div>
+
+    <!-- Barako Punch -->
+    <div class="menu-item">
+        <img src="IMAGES/Barako Punch.png" alt="Barako Punch">
+        <h3>Barako Punch</h3>
+        <p class="price">₱65</p>
+        <div class="size-selector">
+            <label for="size-5">Choose Size:</label>
+            <select id="size-5">
+                <option value="65">Small - ₱65</option>
+                <option value="85">Medium - ₱85</option>
+                <option value="105">Large - ₱105</option>
+            </select>
+        </div>
+        <button class="add-to-cart" data-name="Barako Punch" data-price="65">Add to Basket</button>
+    </div>
+
+    <!-- Basket Section -->
+    <div class="basket">
+      <h1 class="header">Your Basket</h1>
+      <div id="basket-items" class="basket-items-container">Your basket is empty.</div>
+      <div class="total">
+        <p>Total: <strong>₱<span id="total-price">0</span></strong></p>
+      </div>
+      <button id="checkout">Checkout</button>
+    </div>
+
+    <script>
+        // Store items in the basket
+        let basket = [];
+
+        // Event listener for Add to Basket buttons
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const itemName = this.getAttribute('data-name');
+                const sizeSelect = this.previousElementSibling.querySelector('select');
+                const selectedSize = sizeSelect.options[sizeSelect.selectedIndex].text;
+                const selectedPrice = sizeSelect.value;
+                
+                // Check if item is already in the basket with the same size
+                const existingItem = basket.find(item => item.name === itemName && item.size === selectedSize);
+
+                if (existingItem) {
+                    // If item already exists, increase the quantity
+                    existingItem.quantity += 1;
+                    existingItem.totalPrice = existingItem.price * existingItem.quantity;
+                } else {
+                    // Add new item to the basket
+                    basket.push({
+                        name: itemName,
+                        size: selectedSize,
+                        price: parseFloat(selectedPrice),
+                        quantity: 1,
+                        totalPrice: parseFloat(selectedPrice)
+                    });
+                }
+
+                // Update basket display
+                updateBasket();
+            });
+        });
+
+        // Function to update the basket view
+        function updateBasket() {
+            const basketItemsContainer = document.getElementById('basket-items');
+            const totalPriceElement = document.getElementById('total-price');
+
+            // Clear current basket display
+            basketItemsContainer.innerHTML = '';
+
+            let totalPrice = 0;
+            basket.forEach(item => {
+                const itemElement = document.createElement('p');
+                const quantityText = item.quantity > 1 ? ` x${item.quantity}` : '';
+                itemElement.textContent = `${item.name} (${item.size})${quantityText} - ₱${item.totalPrice.toFixed(2)}`;
+                basketItemsContainer.appendChild(itemElement);
+                totalPrice += item.totalPrice;
+            });
+
+            totalPriceElement.textContent = totalPrice.toFixed(2);
+        }
+    </script>
+
+</body>
+</html>

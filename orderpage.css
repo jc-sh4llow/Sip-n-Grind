@@ -1,0 +1,311 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f5f0;
+    color: #4a4a4a;
+}
+
+/* Navbar */
+.nav{
+    position: relative;
+    display: grid;
+    grid-template-columns: 13% 64% 23%;
+    margin-top: 15px;
+}
+.text-menu{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.list{
+    display: flex;
+    margin-right: 40px;
+}
+.list li a::after{
+    content: "";
+    position: absolute;
+    transition: .3s;
+    height: 3px;
+    width: 0%;
+    bottom: 1px;
+    right: 1px;
+    background:#967259;
+}
+.list li a:hover::after{ 
+    width: 100%;
+}
+.list li{
+    list-style: none;
+}
+.list li a{
+    text-decoration: none;
+    padding: 5px;
+    margin: 5px 40px;
+    font-size: 17px;
+    color: #38220F;
+    position: relative;
+}
+.logo{
+    display: flex;
+    justify-content: flex-end;
+}
+.logo img{
+    width: 120px;
+}
+.search-bar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.outer-search{
+    width: 202px;
+    height: 40px;
+    background: #634832;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search-icon img{
+    width: 21px;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+.search{
+    width: 200px;
+    height: 38px;
+    background: #634832;
+    border-radius: 19px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    transition:  0.1s;
+}
+.search:hover{
+    border: 1px solid white;
+}
+
+.search-text{
+    margin: 5px 10px;
+}
+.search-text input{
+    background: #634832;
+    outline: none;
+    border: none;
+    color: white;
+    width: 130px;
+    height: 30px;
+    font-size: 17px;
+}
+
+.location-icon{
+    margin-right: 50px;
+    margin-left: 50px;
+}
+
+.location-icon img{
+    width: 20px;
+    margin-top: 3px;
+    margin-right: 50px;
+    transition: 0.3s;
+    cursor: alias;
+}
+.location-icon img:hover{
+    width: 22px;
+    opacity: .9;
+}
+/* Main Container */
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Menu Section */
+.menu {
+    flex: 3;
+}
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Adjust the number of columns */
+    gap: 20px; /* Spacing between items */
+    padding: 3%;
+}
+
+.menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+    border: 1px solid #d3c1a1;
+    border-radius: 10px;
+    background-color: #fff;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 350px; /* Ensures uniform height */
+    justify-content: space-between; /* Ensures even spacing between elements */
+}
+
+.menu-item img {
+    max-width: 100px; /* Ensures uniform image size */
+    height: auto;
+    margin-bottom: 15px;
+    border-radius: 8px; /* Rounded edges for the images */
+}
+
+.menu-item h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #4a4a4a;
+}
+
+.menu-item p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #b38b6d;
+    font-weight: bold;
+}
+
+
+.menu-item button {
+    background: #38220F; /* Change to dark brown on hover */
+    color: #ECE0D1; /* Text color becomes light */
+    border-color: #ECE0D1; /* Border color matches the hover text color */
+    border-radius: 5px;
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth hover transition */
+}
+
+.menu-item button:hover {
+    background: #ECE0D1; /* Same as your existing button background */
+    color: #38220F; /* Text color */
+    border-color: #ECE0D1; 
+}
+
+
+/* Basket Section */
+.basket {
+    flex: 1;
+    border: 1px solid #d3c1a1;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+    position: sticky; /* Keeps the basket fixed while scrolling */
+    top: 20px;
+    height: fit-content; /* Ensures the basket adjusts to its content */
+}
+
+.basket .header {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #4a4a4a;
+    text-align: center;
+}
+
+.basket-items-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-height: 400px; /* Add a limit for scrollable items */
+    overflow-y: auto;
+}
+
+.basket-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #d3c1a1;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #f9f8f4;
+    transition: box-shadow 0.3s;
+}
+
+.basket-item:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.basket-item img {
+    max-width: 50px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.basket-item .basket-item-details {
+    flex-grow: 1;
+    padding-left: 10px;
+}
+
+.basket-item .basket-item-details h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #4a4a4a;
+}
+
+.basket-item .basket-item-details p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #b38b6d;
+}
+
+.basket-item button {
+    background: #38220F; /* Change to dark brown on hover */
+    color: #ECE0D1; /* Text color becomes light */
+    border-color: #ECE0D1; /* Border color matches the hover text color */
+    border-radius: 5px;
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth hover transition */
+}
+
+.basket-item button:hover {
+    background: #ECE0D1; /* Same as your existing button background */
+    color: #38220F; /* Text color */
+    border-color: #ECE0D1; 
+}
+
+.total {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #4a4a4a;
+    text-align: center;
+}
+
+.total strong {
+    color: #b38b6d;
+}
+
+#checkout {
+    display: block;
+    width: 100%;
+    border: none;
+    background: #38220F; /* Change to dark brown on hover */
+    color: #ECE0D1; /* Text color becomes light */
+    border-color: #ECE0D1; /* Border color matches the hover text color */
+    border-radius: 5px;
+    padding: 10px 0;
+    cursor: pointer;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth hover transition */
+}
+
+#checkout:hover {
+    background: #ECE0D1; /* Same as your existing button background */
+    color: #38220F; /* Text color */
+
+}

@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Jacques Francois', serif;
+    font-family: "Poppins", sans-serif;
 }
 body{
     background: #ECE0D1;
@@ -351,7 +351,6 @@ body, html{
 }
 
 /* reader section starts */
-
 .reader{
     margin-top: 50px;
     background-image: url('./images/Rectangle7.png') ;
@@ -410,7 +409,7 @@ body, html{
 .price-button .price{
     font-size: 40px;
     color: #fff;
-    font-family: 'Inria Serif', serif;
+    font-family: "Poppins", sans-serif;
 }
 .price-button .brew-button{
     background: #ECE0D1;
@@ -454,6 +453,7 @@ body, html{
     width: 600px;
     border: 20px solid #ECE0D1;
     opacity: .85;
+    object-fit: cover;
 }
 
 @media (max-width: 1024px){
@@ -633,7 +633,7 @@ body, html{
 .reader-2-text-price-button .price{
     font-size: 40px;
     color:#38220F;
-    font-family: 'Inria Serif', serif;
+    font-family: "Poppins", sans-serif;
 }
 .reader-2-text-price-button .brew-button{
     background: #38220F;
@@ -795,7 +795,7 @@ hr{
 .menu-button .price{
     font-size: 40px;
     color:#38220F;
-    font-family: 'Inria Serif', serif;
+    font-family: "Poppins", sans-serif;
 }
 .menu-button .brew-button{
     background: #38220F;
@@ -1429,7 +1429,7 @@ footer {
     background: #634832;
 }
 footer span {
-    font-family: 'Inter', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-weight: 300;
     opacity: .7;
     margin-bottom: 40px;
@@ -1467,7 +1467,7 @@ footer span:hover {
 
 .about a, .order a, .location a, .social a {
     font-size: 20px;
-    font-family: 'Inter', sans-serif;
+    font-family: "Poppins", sans-serif;
     text-decoration: none;
     margin-bottom: 10px;
     color: #ffffff9d;
@@ -1486,7 +1486,7 @@ footer span:hover {
     opacity: 1;
 }
 .language-picker select, .language-picker option {
-    font-family: 'Inter', sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 @media (max-width: 768px) {

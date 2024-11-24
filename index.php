@@ -67,8 +67,8 @@ if ($result_popular && $result_popular->num_rows > 0) {
     <title>Cafe Website</title>
     <link rel="stylesheet" href="SnG-main.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <script src="sng.js"></script>
     <script src="https://kit.fontawesome.com/e6356ea24f.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
@@ -87,11 +87,11 @@ if ($result_popular && $result_popular->num_rows > 0) {
             <div class="navbar-items">
                 <div class="text-menu">
                     <ul class="list">
-                        <li><a href="#" class="links">Home</a></li>
-                        <li><a href="#" class="links">Menu</a></li>
+                        <li><a href="index.php" class="links active">Home</a></li>
+                        <li><a href="menu.php" class="links">Menu</a></li>
                         <li><a href="#" class="links">Merchandises</a></li>
                         <li><a href="#" class="links">Delivery</a></li>
-                        <li><a href="#" class="links">About Us</a></li>
+                        <li><a href="aboutus.php" class="links">About Us</a></li>
                     </ul>
                 </div>
                 <div class="navbar-right">
@@ -137,7 +137,10 @@ if ($result_popular && $result_popular->num_rows > 0) {
             </div>
             <div class="image-area">
                 <div class="image-1">
-                    <img class="img-2" src="./images/drinkingcoffee.avif" alt="">
+                    <video class="img-2" autoplay muted loop>
+                        <source src="./images/bgvid.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
             </div>
         </div>
@@ -326,7 +329,10 @@ if ($result_popular && $result_popular->num_rows > 0) {
             </div>
         </div>
     </footer>
-    
+
+    <script src="sng.js"></script>
+    <script src="popup.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

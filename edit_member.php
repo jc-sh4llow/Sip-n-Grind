@@ -71,36 +71,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Team Member</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Edit Team Member</h1>
-    <?php if (isset($error)): ?>
-        <p style="color: red;"><?php echo $error; ?></p>
-    <?php endif; ?>
-    <form action="edit_member.php?id=<?php echo $id; ?>" method="post">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($member['name']); ?>" required><br>
+    <div class="container mt-5">
+        <h1>Edit Team Member</h1>
 
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" required><?php echo htmlspecialchars($member['description']); ?></textarea><br>
+        <?php if (isset($error)): ?>
+            <div class="alert alert-danger">
+                <?php echo $error; ?>
+            </div>
+        <?php endif; ?>
 
-        <label for="image_url">Image URL:</label>
-        <input type="text" id="image_url" name="image_url" value="<?php echo htmlspecialchars($member['image_url']); ?>"><br>
+        <form action="edit_member.php?id=<?php echo $id; ?>" method="post">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name:</label>
+                <input type="text" id="name" name="name" class="form-control" value="<?php echo htmlspecialchars($member['name']); ?>" required>
+            </div>
 
-        <label for="twitter_link">Twitter Link:</label>
-        <input type="url" id="twitter_link" name="twitter_link" value="<?php echo htmlspecialchars($member['twitter_link']); ?>"><br>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description:</label>
+                <textarea id="description" name="description" class="form-control" required><?php echo htmlspecialchars($member['description']); ?></textarea>
+            </div>
 
-        <label for="facebook_link">Facebook Link:</label>
-        <input type="url" id="facebook_link" name="facebook_link" value="<?php echo htmlspecialchars($member['facebook_link']); ?>"><br>
+            <div class="mb-3">
+                <label for="image_url" class="form-label">Image URL:</label>
+                <input type="text" id="image_url" name="image_url" class="form-control" value="<?php echo htmlspecialchars($member['image_url']); ?>">
+            </div>
 
-        <label for="instagram_link">Instagram Link:</label>
-        <input type="url" id="instagram_link" name="instagram_link" value="<?php echo htmlspecialchars($member['instagram_link']); ?>"><br>
+            <div class="mb-3">
+                <label for="twitter_link" class="form-label">Twitter Link:</label>
+                <input type="url" id="twitter_link" name="twitter_link" class="form-control" value="<?php echo htmlspecialchars($member['twitter_link']); ?>">
+            </div>
 
-        <label for="email_link">Email:</label>
-        <input type="email" id="email_link" name="email_link" value="<?php echo htmlspecialchars($member['email_link']); ?>"><br>
+            <div class="mb-3">
+                <label for="facebook_link" class="form-label">Facebook Link:</label>
+                <input type="url" id="facebook_link" name="facebook_link" class="form-control" value="<?php echo htmlspecialchars($member['facebook_link']); ?>">
+            </div>
 
-        <button type="submit">Update Team Member</button>
-        <a href="admin.php">Cancel</a>
-    </form>
+            <div class="mb-3">
+                <label for="instagram_link" class="form-label">Instagram Link:</label>
+                <input type="url" id="instagram_link" name="instagram_link" class="form-control" value="<?php echo htmlspecialchars($member['instagram_link']); ?>">
+            </div>
+
+            <div class="mb-3">
+                <label for="email_link" class="form-label">Email:</label>
+                <input type="email" id="email_link" name="email_link" class="form-control" value="<?php echo htmlspecialchars($member['email_link']); ?>">
+            </div>
+
+            <button type="submit" class="btn btn-success">Update Team Member</button>
+            <a href="admin.php" class="btn btn-danger ms-3">Cancel</a>
+        </form>
+    </div>
+
+    <!-- Optional Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -38,31 +38,43 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add New Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h2>Add New Admin User</h2>
+    <div class="container mt-5">
+        <h2>Add New Admin User</h2>
 
-    <form method="POST" action="add_user.php">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <br>
+        <form method="POST" action="add_user.php">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username:</label>
+                <input type="text" id="username" name="username" class="form-control" required>
+            </div>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
 
-        <label for="confirm_password">Confirm Password:</label>
-        <input type="password" id="confirm_password" name="confirm_password" required>
-        <br>
+            <div class="mb-3">
+                <label for="confirm_password" class="form-label">Confirm Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
+            </div>
 
-        <input type="submit" value="Add User">
-    </form>
+            <button type="submit" class="btn btn-primary">Add User</button>
 
-    <?php
-    // Display message if set
-    if (isset($message)) {
-        echo "<p>$message</p>";
-    }
-    ?>
+            <!-- Cancel Button -->
+            <a href="admin.php" class="btn btn-danger ms-3">Cancel</a>
+        </form>
+
+        <?php
+        // Display message if set
+        if (isset($message)) {
+            echo "<p class='mt-3'>$message</p>";
+        }
+        ?>
+    </div>
+
+    <!-- Optional Bootstrap JS (for additional components like modals, etc.) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -56,13 +56,14 @@ if ($result) {
         </div>
         <div class="navbar-items">
             <div class="text-menu">
-                <ul class="list">
-                    <li><a href="#" class="links">Home</a></li>
-                    <li><a href="#" class="links">Menu</a></li>
-                    <li><a href="#" class="links">Merchandises</a></li>
-                    <li><a href="#" class="links">Delivery</a></li>
-                    <li><a href="#" class="links">About Us</a></li>
-                </ul>
+                    <ul class="list">
+                    <li><a href="index.php" class="links">Home</a></li>
+                        <li><a href="menu.php" class="links">Menu</a></li>
+                        <li><a href="#" class="links">Merchandises</a></li>
+                        <li><a href="#" class="links">Delivery</a></li>
+                        <li><a href="aboutus.php" class="links" active>About Us</a></li>
+                        <li><a href="login.php" class="links">Login</a></li>
+                    </ul>
             </div>
             <div class="navbar-right">
                 <div class="search-icon-container">

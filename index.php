@@ -75,9 +75,9 @@ if ($result_popular && $result_popular->num_rows > 0) {
     <div class="navbar">
         <div class="nav">
             <div class="logo-hamburger">
-                <div class="logo">
+                <a href="index.php" class="logo">
                     <img src="./images/Sip__n_grind_logo.png" alt="SnG Logo">
-                </div>
+                </a>
                 <button class="hamburger" id="hamburger-btn">
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -89,8 +89,8 @@ if ($result_popular && $result_popular->num_rows > 0) {
                     <ul class="list">
                         <li><a href="index.php" class="links active">Home</a></li>
                         <li><a href="menu.php" class="links">Menu</a></li>
-                        <li><a href="#" class="links">Merchandises</a></li>
-                        <li><a href="#" class="links">Delivery</a></li>
+                        <li><a href="#" class="links disabled" aria-disabled="true">Merchandises</a></li>
+                        <li><a href="#" class="links disabled" aria-disabled="true">Delivery</a></li>
                         <li><a href="aboutus.php" class="links">About Us</a></li>
                     </ul>
                 </div>
@@ -128,7 +128,7 @@ if ($result_popular && $result_popular->num_rows > 0) {
                     <p class="line">“The world begins to change through the eyes of a cup of coffee.”—Donna Favors</p>
                     <div class="price-button">
                         <div class="price">Order Now!</div>
-                        <a href="#" class="brew-button">
+                        <a href="ordernow.php" class="brew-button">
                             <p class="brew">Brew</p>
                         </a>
                         
@@ -156,9 +156,9 @@ if ($result_popular && $result_popular->num_rows > 0) {
                 <p class="line">"<?php echo $newDescription; ?>"</p>
                 <div class="reader-2-text-price-button">
                     <div class="price">Starts at P<?php echo number_format($newPrice, 2); ?></div>
-                    <div class="brew-button">
+                    <a href="ordernow.php" class="brew-button">
                         <p class="brew">Brew</p>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -204,9 +204,9 @@ if ($result_popular && $result_popular->num_rows > 0) {
                 <p class="reader-4-line">We provide a wide variety of beverages freshly grinded and pastries 
                 from the oven that will guarantee motivation for your daily grind.
                 </p>
-                <div class="reader-4-button">
+                <a href="ordernow.php" class="reader-4-button">
                     <p class="learn">Order</p>
-                </div>
+                </a>
             </div>
             <div class="reader-4-image-area">
                 <img src="./images/ordercoffee.png" alt="">
@@ -256,9 +256,9 @@ if ($result_popular && $result_popular->num_rows > 0) {
                 <p class="reader-6-line">
                 At Sip N Grind, we craft experiences, turning every sip into an adventure. From the aroma of freshly ground beans to the warmth of a perfect brew, we bring coffee closer to you. Our space fosters connection and creativity, celebrating flavor, passion, and community.
                 </p>
-                <div class="button">
+                <a href="aboutus.php" class="button">
                     <p class="learn">Discover</p>
-                </div>
+                </a>
             </div>
         </div>
     </section>
@@ -270,9 +270,9 @@ if ($result_popular && $result_popular->num_rows > 0) {
             <div class="text-area">
                 <h3>Free Delivery</h3>
                 <p class="reader-7-line">Enjoy free delivery within 5km radius </p>
-                <div class="button">
+                <a href="menu.php" class="button">
                     <p class="learn">Shop</p>
-                </div>
+                </a>
                 <p class="delivery-charge">*P25 delivery charge per extra 2km </p>
             </div>
             <div class="image-area">
@@ -287,15 +287,15 @@ if ($result_popular && $result_popular->num_rows > 0) {
             <div class="about" id="about-dropdown">
                 <span>About</span>
                 <div class="about-content foot-content" id="about-dropdown-menu">
-                    <a href="#">Our Coffee</a>
-                    <a href="#">Our Company</a>
-                    <a href="#">Service</a>
+                    <a href="aboutus.php">Our Coffee</a>
+                    <a href="aboutus.php">Our Company</a>
+                    <a href="aboutus.php">Service</a>
                 </div>
             </div>
             <div class="order" id="order-dropdown">
                 <span>Order & Pickup</span>
                 <div class="order-content foot-content" id="order-dropdown-menu">
-                    <a href="#">Order on the Web</a>
+                    <a href="ordernow.php">Order on the Web</a>
                     <a href="#">Delivery</a>
                     <a href="#">Return Policy</a>
                     <a href="#">Bulk Order</a>

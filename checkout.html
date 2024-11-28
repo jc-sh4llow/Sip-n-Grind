@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="checkout-container">
+        <!-- Cart Items Section -->
+        <div class="cart-items">
+            <h2>Your Cart</h2>
+            <div id="cart-items-list">
+                <!-- Example Cart Item -->
+                <div class="cart-item">
+                    <p><strong>Item Name</strong></p>
+                    <p>Size: Medium</p>
+                    <p>₱100 x 2</p>
+        
+                    <!-- Customization Section for This Item -->
+                    <div class="customization">
+                        <label for="milk-type-1">Milk Type:</label>
+                        <select id="milk-type-1" class="customization-dropdown" data-item-id="1">
+                            <option value="regular">Regular Milk (₱0)</option>
+                            <option value="almond">Almond Milk (₱20)</option>
+                            <option value="soy">Soy Milk (₱15)</option>
+                        </select>
+                        <br>
+        
+                        <label for="sugar-level-1">Sugar Level:</label>
+                        <select id="sugar-level-1" class="customization-dropdown" data-item-id="1">
+                            <option value="regular">Regular Sugar (₱0)</option>
+                            <option value="less">Less Sugar (₱0)</option>
+                            <option value="no-sugar">No Sugar (₱0)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="cart-item">
+                    <p><strong>Item Name</strong></p>
+                    <p>Size: Medium</p>
+                    <p>₱100 x 2</p>
+        
+                    <!-- Customization Section for This Item -->
+                    <div class="customization">
+                        <label for="milk-type-1">Milk Type:</label>
+                        <select id="milk-type-1" class="customization-dropdown" data-item-id="1">
+                            <option value="regular">Regular Milk (₱0)</option>
+                            <option value="almond">Almond Milk (₱20)</option>
+                            <option value="soy">Soy Milk (₱15)</option>
+                        </select>
+                        <br>
+        
+                        <label for="sugar-level-1">Sugar Level:</label>
+                        <select id="sugar-level-1" class="customization-dropdown" data-item-id="1">
+                            <option value="regular">Regular Sugar (₱0)</option>
+                            <option value="less">Less Sugar (₱0)</option>
+                            <option value="no-sugar">No Sugar (₱0)</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Add more cart items dynamically here -->
+            </div>
+        </div>
+        
+        
+        
+
+        <!-- Customer Information Form -->
+        <div class="customer-info">
+            <h3>Customer Information</h3>
+            <form id="customer-form">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+                <br><br>
+                <label for="address">Shipping Address:</label>
+                <input type="text" id="address" name="address" required>
+                <br><br>
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone" required>
+            </form>
+        </div>
+
+        <!-- Price Breakdown -->
+        <div class="price-breakdown">
+            <h3>Price Breakdown</h3>
+            <div>
+                <p>Total: ₱450</p> <!-- Will be dynamically calculated -->
+            </div>
+        </div>
+
+        <!-- Checkout Button -->
+        <button id="checkout-btn">Proceed to Checkout</button>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmation-modal" class="modal">
+        <div class="modal-content">
+            <h3>Confirm Your Order</h3>
+            <p>Review your details and items</p>
+            <button id="confirm-btn">Confirm</button>
+            <button id="cancel-btn">Cancel</button>
+        </div>
+    </div>
+
+    <script src="checkout.js"></script>
+</body>
+</html>

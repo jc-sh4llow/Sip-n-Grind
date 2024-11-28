@@ -45,9 +45,9 @@ if ($result) {
   <div class="navbar">
     <div class="nav">
         <div class="logo-hamburger">
-            <div class="logo">
-                <img src="./images/Sip__n_grind_logo.png" alt="SnG Logo">
-            </div>
+                <a href="index.php" class="logo">
+                    <img src="./images/Sip__n_grind_logo.png" alt="SnG Logo">
+                </a>
             <button class="hamburger" id="hamburger-btn">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -59,8 +59,8 @@ if ($result) {
                     <ul class="list">
                     <li><a href="index.php" class="links">Home</a></li>
                         <li><a href="menu.php" class="links">Menu</a></li>
-                        <li><a href="#" class="links">Merchandises</a></li>
-                        <li><a href="#" class="links">Delivery</a></li>
+                        <li><a href="#" class="links disabled" aria-disabled="true">Merchandises</a></li>
+                        <li><a href="#" class="links disabled" aria-disabled="true">Delivery</a></li>
                         <li><a href="aboutus.php" class="links" active>About Us</a></li>
                         <li><a href="login.php" class="links">Login</a></li>
                     </ul>
@@ -155,15 +155,15 @@ $teamMembers = $result && $result->num_rows > 0 ? $result->fetch_all(MYSQLI_ASSO
         <div class="about" id="about-dropdown">
             <span>About</span>
             <div class="about-content foot-content" id="about-dropdown-menu">
-                <a href="#">Our Coffee</a>
-                <a href="#">Our Company</a>
-                <a href="#">Service</a>
+                    <a href="aboutus.php">Our Coffee</a>
+                    <a href="aboutus.php">Our Company</a>
+                    <a href="aboutus.php">Service</a>
             </div>
         </div>
         <div class="order" id="order-dropdown">
             <span>Order & Pickup</span>
             <div class="order-content foot-content" id="order-dropdown-menu">
-                <a href="#">Order on the Web</a>
+                <a href="ordernow.php">Order on the Web</a>
                 <a href="#">Delivery</a>
                 <a href="#">Return Policy</a>
                 <a href="#">Bulk Order</a>

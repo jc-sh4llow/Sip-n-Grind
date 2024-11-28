@@ -21,9 +21,9 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Menu</title>
-    <link rel="stylesheet" href="menu.css">
-    <script src="menu.js"></script>
+    <title>Order Now</title>
+    <link rel="stylesheet" href="ordernow.css">
+    <script src="ordernow.js" defer></script>
     <script src="https://kit.fontawesome.com/e6356ea24f.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -75,23 +75,14 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 <div class="mainbodycontent">
-    
-    <h1>Browse Our Products</h1>
-    <br>
-    <h2>Explore our full menu and find your perfect treat.</h2>
-    <br>
-    <br>
-    <h2>Brewed Coffee</h2>
-    <a href="ordernow.php#cat-1">
-        <br>
-        <button class="order-now-btn">Order Now</button>
-    </a>
+    <div class="menu-area">
+        
+    <h2 id="cat-1">Brewed Coffee</h2>
     <div class="menu-container">
         <?php
         // Loop through the items and display them dynamically
         $current_item_id = null;
         $current_item_name = "";
-        $current_item_description = "";
         $current_item_image = "";
         $sizes = [];
 
@@ -105,11 +96,21 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     // Debugging the image path output
                     $image_path =  $current_item_image;
+                    echo "<div class='img-container'>";
                     echo "<img src='$image_path' alt='$current_item_name'>";
-
-                    echo "<div class='item-description'>$current_item_description";
+                    echo "</div>";
+                    
+                    echo "<div class='item-description'>";
+                    echo "<div class='choose-size'>";
+                    echo "<span>Choose a size:</span>";
+                    echo "<button class='info-button'>i<span class='tooltip'>Customize at checkout</span></button>";
+                    echo "</div>";
                     foreach ($sizes as $size) {
-                        echo "<br>{$size['size']} (₱" . number_format($size['price'], 2) . ")";
+                        echo "<div class='size-container'>";
+                        echo "<br><span class='size-name'>{$size['size']}</span>";
+                        echo "<span class='size-price'>₱" . number_format($size['price'], 2) . "</span>";
+                        echo "<button class='add-to-cart'  data-id='$current_item_id' data-name='$current_item_name' data-size='{$size['size']}' data-price='{$size['price']}'>Add to cart</button>";
+                        echo "</div>";
                     }
                     echo "</div>";
                     echo "</div>";
@@ -118,7 +119,6 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 // Reset for the new item
                 $current_item_id = $item['item_id'];
                 $current_item_name = $item['name'];
-                $current_item_description = $item['description'];
                 $current_item_image = $item['image'];
                 $sizes = [];
             }
@@ -136,9 +136,17 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $image_path =  $current_item_image;
             echo "<img src='$image_path' alt='$current_item_name'>";
 
-            echo "<div class='item-description'>$current_item_description";
+            echo "<div class='item-description'>";
+                echo "<div class='choose-size'>";
+                    echo "<span>Choose a size:</span>";
+                    echo "<button class='info-button'>i<span class='tooltip'>Customize at checkout</span></button>";
+                echo "</div>";
             foreach ($sizes as $size) {
-                echo "<br>{$size['size']} (₱" . number_format($size['price'], 2) . ")";
+                echo "<div class='size-container'>";
+                echo "<br><span class='size-name'>{$size['size']}</span>";
+                echo "<span class='size-price'>₱" . number_format($size['price'], 2) . "</span>";
+                echo "<button class='add-to-cart'  data-id='$current_item_id' data-name='$current_item_name' data-size='{$size['size']}' data-price='{$size['price']}'>Add to cart</button>";
+                echo "</div>";
             }
             echo "</div>";
             echo "</div>";
@@ -146,14 +154,9 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
         </div>
 
-        <h2>Frappes</h2>
-    <a href="ordernow.php#cat-2">
-        <br>
-        <button class="order-now-btn">Order Now</button>
-    </a>
+        <h2 id="cat-2">Frappes</h2>
 <div class="menu-container">
     <?php
-    // Query to get items for Frappes (Category 2)
     $query_frappes = "SELECT m.item_id, m.name, m.description, m.image, i.size, i.price 
                       FROM menu_items m
                       JOIN item_sizes i ON m.item_id = i.item_id
@@ -162,10 +165,8 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $stmt_frappes = $pdo->query($query_frappes);
     $frappes = $stmt_frappes->fetchAll(PDO::FETCH_ASSOC);
 
-    // Loop through the Frappes items and display them dynamically
     $current_item_id = null;
     $current_item_name = "";
-    $current_item_description = "";
     $current_item_image = "";
     $sizes = [];
 
@@ -181,9 +182,17 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 $image_path =  $current_item_image;
                 echo "<img src='$image_path' alt='$current_item_name'>";
 
-                echo "<div class='item-description'>$current_item_description";
+                echo "<div class='item-description'>";
+                    echo "<div class='choose-size'>";
+                        echo "<span>Choose a size:</span>";
+                        echo "<button class='info-button'>i<span class='tooltip'>Customize at checkout</span></button>";
+                    echo "</div>";
                 foreach ($sizes as $size) {
-                    echo "<br>{$size['size']} (₱" . number_format($size['price'], 2) . ")";
+                    echo "<div class='size-container'>";
+                    echo "<br><span class='size-name'>{$size['size']}</span>";
+                    echo "<span class='size-price'>₱" . number_format($size['price'], 2) . "</span>";
+                    echo "<button class='add-to-cart'  data-id='$current_item_id' data-name='$current_item_name' data-size='{$size['size']}' data-price='{$size['price']}'>Add to cart</button>";
+                    echo "</div>";
                 }
                 echo "</div>";
                 echo "</div>";
@@ -192,7 +201,6 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
             // Reset for the new item
             $current_item_id = $item['item_id'];
             $current_item_name = $item['name'];
-            $current_item_description = $item['description'];
             $current_item_image = $item['image'];
             $sizes = [];
         }
@@ -210,9 +218,17 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $image_path =  $current_item_image;
         echo "<img src='$image_path' alt='$current_item_name'>";
 
-        echo "<div class='item-description'>$current_item_description";
+        echo "<div class='item-description'>";
+        echo "<div class='choose-size'>";
+            echo "<span>Choose a size:</span>";
+            echo "<button class='info-button'>i<span class='tooltip'>Customize at checkout</span></button>";
+        echo "</div>";
         foreach ($sizes as $size) {
-            echo "<br>{$size['size']} (₱" . number_format($size['price'], 2) . ")";
+            echo "<div class='size-container'>";
+            echo "<br><span class='size-name'>{$size['size']}</span>";
+            echo "<span class='size-price'>₱" . number_format($size['price'], 2) . "</span>";
+            echo "<button class='add-to-cart'  data-id='$current_item_id' data-name='$current_item_name' data-size='{$size['size']}' data-price='{$size['price']}'>Add to cart</button>";
+            echo "</div>";
         }
         echo "</div>";
         echo "</div>";
@@ -220,30 +236,99 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
 </div>
     
-<h2>Espresso</h2>
-    <a href="ordernow.php#cat-3">
-        <br>
-        <button class="order-now-btn">Order Now</button>
-    </a>
+<h2 id="cat-3">Espresso</h2>
 <div class="menu-container">
     <?php
-    // Query to get items for Frappes (Category 2)
-    $query_frappes = "SELECT m.item_id, m.name, m.description, m.image, i.size, i.price 
+    $query_espressos = "SELECT m.item_id, m.name, m.description, m.image, i.size, i.price 
                       FROM menu_items m
                       JOIN item_sizes i ON m.item_id = i.item_id
-                      WHERE m.category_id = 3"; // Filter for Frappes category
+                      WHERE m.category_id = 3";
 
-    $stmt_frappes = $pdo->query($query_frappes);
-    $frappes = $stmt_frappes->fetchAll(PDO::FETCH_ASSOC);
+    $stmt_espressos = $pdo->query($query_espressos);
+    $espressos = $stmt_espressos->fetchAll(PDO::FETCH_ASSOC);
 
-    // Loop through the Frappes items and display them dynamically
     $current_item_id = null;
     $current_item_name = "";
-    $current_item_description = "";
     $current_item_image = "";
     $sizes = [];
 
-    foreach ($frappes as $item) {
+    foreach ($espressos as $item) {
+        if ($current_item_id != $item['item_id']) {
+            if ($current_item_id !== null) {
+                // Display the previous item
+                echo "<div class='menu-item'>";
+                echo "<div class='item-name'>$current_item_name</div>";
+
+                $image_path =  $current_item_image;
+                echo "<img src='$image_path' alt='$current_item_name'>";
+
+                echo "<div class='item-description'>";
+                echo "<div class='choose-size'>";
+                    echo "<span>Choose a size:</span>";
+                    echo "<button class='info-button'>i<span class='tooltip'>Customize at checkout</span></button>";
+                echo "</div>";
+                foreach ($sizes as $size) {
+                    echo "<div class='size-container'>";
+                    echo "<br><span class='size-name'>{$size['size']}</span>";
+                    echo "<span class='size-price'>₱" . number_format($size['price'], 2) . "</span>";
+                    echo "<button class='add-to-cart'  data-id='$current_item_id' data-name='$current_item_name' data-size='{$size['size']}' data-price='{$size['price']}'>Add to cart</button>";
+                    echo "</div>";
+                }
+                echo "</div>";
+                echo "</div>";
+            }
+
+            $current_item_id = $item['item_id'];
+            $current_item_name = $item['name'];
+            $current_item_image = $item['image'];
+            $sizes = [];
+        }
+
+        $sizes[] = ['size' => $item['size'], 'price' => $item['price']];
+    }
+
+    if ($current_item_id !== null) {
+        echo "<div class='menu-item'>";
+        echo "<div class='item-name'>$current_item_name</div>";
+
+        $image_path =  $current_item_image;
+        echo "<img src='$image_path' alt='$current_item_name'>";
+
+        echo "<div class='item-description'>";
+        echo "<div class='choose-size'>";
+            echo "<span>Choose a size:</span>";
+            echo "<button class='info-button'>i<span class='tooltip'>Customize at checkout</span></button>";
+        echo "</div>";
+        foreach ($sizes as $size) {
+            echo "<div class='size-container'>";
+            echo "<br><span class='size-name'>{$size['size']}</span>";
+            echo "<span class='size-price'>₱" . number_format($size['price'], 2) . "</span>";
+            echo "<button class='add-to-cart'  data-id='$current_item_id' data-name='$current_item_name' data-size='{$size['size']}' data-price='{$size['price']}'>Add to cart</button>";
+            echo "</div>";
+        }
+        echo "</div>";
+        echo "</div>";
+    }
+    ?>
+</div>
+
+<h2 id="cat-4">Blended Beverages</h2>
+<div class="menu-container">
+    <?php
+    $query_blendeds = "SELECT m.item_id, m.name, m.description, m.image, i.size, i.price 
+                      FROM menu_items m
+                      JOIN item_sizes i ON m.item_id = i.item_id
+                      WHERE m.category_id = 4";
+
+    $stmt_blendeds = $pdo->query($query_blendeds);
+    $blendeds = $stmt_blendeds->fetchAll(PDO::FETCH_ASSOC);
+
+    $current_item_id = null;
+    $current_item_name = "";
+    $current_item_image = "";
+    $sizes = [];
+
+    foreach ($blendeds as $item) {
         // If the item_id changes, output the previous item and reset
         if ($current_item_id != $item['item_id']) {
             if ($current_item_id !== null) {
@@ -255,9 +340,17 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 $image_path =  $current_item_image;
                 echo "<img src='$image_path' alt='$current_item_name'>";
 
-                echo "<div class='item-description'>$current_item_description";
+                echo "<div class='item-description'>";
+                echo "<div class='choose-size'>";
+                    echo "<span>Choose a size:</span>";
+                    echo "<button class='info-button'>i<span class='tooltip'>Customize at checkout</span></button>";
+                echo "</div>";
                 foreach ($sizes as $size) {
-                    echo "<br>{$size['size']} (₱" . number_format($size['price'], 2) . ")";
+                    echo "<div class='size-container'>";
+                    echo "<br><span class='size-name'>{$size['size']}</span>";
+                    echo "<span class='size-price'>₱" . number_format($size['price'], 2) . "</span>";
+                    echo "<button class='add-to-cart'  data-id='$current_item_id' data-name='$current_item_name' data-size='{$size['size']}' data-price='{$size['price']}'>Add to cart</button>";
+                    echo "</div>";
                 }
                 echo "</div>";
                 echo "</div>";
@@ -266,7 +359,6 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
             // Reset for the new item
             $current_item_id = $item['item_id'];
             $current_item_name = $item['name'];
-            $current_item_description = $item['description'];
             $current_item_image = $item['image'];
             $sizes = [];
         }
@@ -284,9 +376,17 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $image_path =  $current_item_image;
         echo "<img src='$image_path' alt='$current_item_name'>";
 
-        echo "<div class='item-description'>$current_item_description";
+        echo "<div class='item-description'>";
+        echo "<div class='choose-size'>";
+            echo "<span>Choose a size:</span>";
+            echo "<button class='info-button'>i<span class='tooltip'>Customize at checkout</span></button>";
+        echo "</div>";
         foreach ($sizes as $size) {
-            echo "<br>{$size['size']} (₱" . number_format($size['price'], 2) . ")";
+            echo "<div class='size-container'>";
+            echo "<br><span class='size-name'>{$size['size']}</span>";
+            echo "<span class='size-price'>₱" . number_format($size['price'], 2) . "</span>";
+            echo "<button class='add-to-cart'  data-id='$current_item_id' data-name='$current_item_name' data-size='{$size['size']}' data-price='{$size['price']}'>Add to cart</button>";
+            echo "</div>";
         }
         echo "</div>";
         echo "</div>";
@@ -294,30 +394,23 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
 </div>
 
-<h2>Blended Beverages</h2>
-    <a href="ordernow.php#cat-4">
-        <br>
-        <button class="order-now-btn">Order Now</button>
-    </a>
+<h2 id="cat-5">Chocolate Beverages</h2>
 <div class="menu-container">
     <?php
-    // Query to get items for Frappes (Category 2)
-    $query_frappes = "SELECT m.item_id, m.name, m.description, m.image, i.size, i.price 
+    $query_chocos = "SELECT m.item_id, m.name, m.description, m.image, i.size, i.price 
                       FROM menu_items m
                       JOIN item_sizes i ON m.item_id = i.item_id
-                      WHERE m.category_id = 4"; // Filter for Frappes category
+                      WHERE m.category_id = 5";
 
-    $stmt_frappes = $pdo->query($query_frappes);
-    $frappes = $stmt_frappes->fetchAll(PDO::FETCH_ASSOC);
+    $stmt_chocos = $pdo->query($query_chocos);
+    $chocos = $stmt_chocos->fetchAll(PDO::FETCH_ASSOC);
 
-    // Loop through the Frappes items and display them dynamically
     $current_item_id = null;
     $current_item_name = "";
-    $current_item_description = "";
     $current_item_image = "";
     $sizes = [];
 
-    foreach ($frappes as $item) {
+    foreach ($chocos as $item) {
         // If the item_id changes, output the previous item and reset
         if ($current_item_id != $item['item_id']) {
             if ($current_item_id !== null) {
@@ -329,9 +422,17 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 $image_path =  $current_item_image;
                 echo "<img src='$image_path' alt='$current_item_name'>";
 
-                echo "<div class='item-description'>$current_item_description";
+                echo "<div class='item-description'>";
+                echo "<div class='choose-size'>";
+                    echo "<span>Choose a size:</span>";
+                    echo "<button class='info-button'>i<span class='tooltip'>Customize at checkout</span></button>";
+                echo "</div>";
                 foreach ($sizes as $size) {
-                    echo "<br>{$size['size']} (₱" . number_format($size['price'], 2) . ")";
+                    echo "<div class='size-container'>";
+                    echo "<br><span class='size-name'>{$size['size']}</span>";
+                    echo "<span class='size-price'>₱" . number_format($size['price'], 2) . "</span>";
+                    echo "<button class='add-to-cart'  data-id='$current_item_id' data-name='$current_item_name' data-size='{$size['size']}' data-price='{$size['price']}'>Add to cart</button>";
+                    echo "</div>";
                 }
                 echo "</div>";
                 echo "</div>";
@@ -340,7 +441,6 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
             // Reset for the new item
             $current_item_id = $item['item_id'];
             $current_item_name = $item['name'];
-            $current_item_description = $item['description'];
             $current_item_image = $item['image'];
             $sizes = [];
         }
@@ -358,9 +458,17 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $image_path =  $current_item_image;
         echo "<img src='$image_path' alt='$current_item_name'>";
 
-        echo "<div class='item-description'>$current_item_description";
+        echo "<div class='item-description'>";
+        echo "<div class='choose-size'>";
+            echo "<span>Choose a size:</span>";
+            echo "<button class='info-button'>i<span class='tooltip'>Customize at checkout</span></button>";
+        echo "</div>";
         foreach ($sizes as $size) {
-            echo "<br>{$size['size']} (₱" . number_format($size['price'], 2) . ")";
+            echo "<div class='size-container'>";
+            echo "<br><span class='size-name'>{$size['size']}</span>";
+            echo "<span class='size-price'>₱" . number_format($size['price'], 2) . "</span>";
+            echo "<button class='add-to-cart'  data-id='$current_item_id' data-name='$current_item_name' data-size='{$size['size']}' data-price='{$size['price']}'>Add to cart</button>";
+            echo "</div>";
         }
         echo "</div>";
         echo "</div>";
@@ -368,30 +476,23 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
 </div>
 
-<h2>Chocolate Beverages</h2>
-    <a href="ordernow.php#cat-5">
-        <br>
-        <button class="order-now-btn">Order Now</button>
-    </a>
+<h2 id="cat-6">Seasonal Beverages</h2>
 <div class="menu-container">
     <?php
-    // Query to get items for Frappes (Category 2)
-    $query_frappes = "SELECT m.item_id, m.name, m.description, m.image, i.size, i.price 
+    $query_seasonals = "SELECT m.item_id, m.name, m.description, m.image, i.size, i.price 
                       FROM menu_items m
                       JOIN item_sizes i ON m.item_id = i.item_id
-                      WHERE m.category_id = 5"; // Filter for Frappes category
+                      WHERE m.category_id = 6";
 
-    $stmt_frappes = $pdo->query($query_frappes);
-    $frappes = $stmt_frappes->fetchAll(PDO::FETCH_ASSOC);
+    $stmt_seasonals = $pdo->query($query_seasonals);
+    $seasonals = $stmt_seasonals->fetchAll(PDO::FETCH_ASSOC);
 
-    // Loop through the Frappes items and display them dynamically
     $current_item_id = null;
     $current_item_name = "";
-    $current_item_description = "";
     $current_item_image = "";
     $sizes = [];
 
-    foreach ($frappes as $item) {
+    foreach ($seasonals as $item) {
         // If the item_id changes, output the previous item and reset
         if ($current_item_id != $item['item_id']) {
             if ($current_item_id !== null) {
@@ -403,9 +504,17 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 $image_path =  $current_item_image;
                 echo "<img src='$image_path' alt='$current_item_name'>";
 
-                echo "<div class='item-description'>$current_item_description";
+                echo "<div class='item-description'>";
+                echo "<div class='choose-size'>";
+                    echo "<span>Choose a size:</span>";
+                    echo "<button class='info-button'>i<span class='tooltip'>Customize at checkout</span></button>";
+                echo "</div>";
                 foreach ($sizes as $size) {
-                    echo "<br>{$size['size']} (₱" . number_format($size['price'], 2) . ")";
+                    echo "<div class='size-container'>";
+                    echo "<br><span class='size-name'>{$size['size']}</span>";
+                    echo "<span class='size-price'>₱" . number_format($size['price'], 2) . "</span>";
+                    echo "<button class='add-to-cart'  data-id='$current_item_id' data-name='$current_item_name' data-size='{$size['size']}' data-price='{$size['price']}'>Add to cart</button>";
+                    echo "</div>";
                 }
                 echo "</div>";
                 echo "</div>";
@@ -414,7 +523,6 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
             // Reset for the new item
             $current_item_id = $item['item_id'];
             $current_item_name = $item['name'];
-            $current_item_description = $item['description'];
             $current_item_image = $item['image'];
             $sizes = [];
         }
@@ -432,9 +540,17 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $image_path =  $current_item_image;
         echo "<img src='$image_path' alt='$current_item_name'>";
 
-        echo "<div class='item-description'>$current_item_description";
+        echo "<div class='item-description'>";
+        echo "<div class='choose-size'>";
+            echo "<span>Choose a size:</span>";
+            echo "<button class='info-button'>i<span class='tooltip'>Customize at checkout</span></button>";
+        echo "</div>";
         foreach ($sizes as $size) {
-            echo "<br>{$size['size']} (₱" . number_format($size['price'], 2) . ")";
+            echo "<div class='size-container'>";
+            echo "<br><span class='size-name'>{$size['size']}</span>";
+            echo "<span class='size-price'>₱" . number_format($size['price'], 2) . "</span>";
+            echo "<button class='add-to-cart'  data-id='$current_item_id' data-name='$current_item_name' data-size='{$size['size']}' data-price='{$size['price']}'>Add to cart</button>";
+            echo "</div>";
         }
         echo "</div>";
         echo "</div>";
@@ -442,30 +558,23 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
 </div>
 
-<h2>Seasonal Beverages</h2>
-    <a href="ordernow.php#cat-6">
-        <br>
-        <button class="order-now-btn">Order Now</button>
-    </a>
+<h2 id="cat-7">Tea Beverages</h2>
 <div class="menu-container">
     <?php
-    // Query to get items for Frappes (Category 2)
-    $query_frappes = "SELECT m.item_id, m.name, m.description, m.image, i.size, i.price 
+    $query_teas = "SELECT m.item_id, m.name, m.description, m.image, i.size, i.price 
                       FROM menu_items m
                       JOIN item_sizes i ON m.item_id = i.item_id
-                      WHERE m.category_id = 6"; // Filter for Frappes category
+                      WHERE m.category_id = 7";
 
-    $stmt_frappes = $pdo->query($query_frappes);
-    $frappes = $stmt_frappes->fetchAll(PDO::FETCH_ASSOC);
+    $stmt_teas = $pdo->query($query_teas);
+    $teas = $stmt_teas->fetchAll(PDO::FETCH_ASSOC);
 
-    // Loop through the Frappes items and display them dynamically
     $current_item_id = null;
     $current_item_name = "";
-    $current_item_description = "";
     $current_item_image = "";
     $sizes = [];
 
-    foreach ($frappes as $item) {
+    foreach ($teas as $item) {
         // If the item_id changes, output the previous item and reset
         if ($current_item_id != $item['item_id']) {
             if ($current_item_id !== null) {
@@ -477,9 +586,17 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 $image_path =  $current_item_image;
                 echo "<img src='$image_path' alt='$current_item_name'>";
 
-                echo "<div class='item-description'>$current_item_description";
+                echo "<div class='item-description'>";
+                echo "<div class='choose-size'>";
+                    echo "<span>Choose a size:</span>";
+                    echo "<button class='info-button'>i<span class='tooltip'>Customize at checkout</span></button>";
+                echo "</div>";
                 foreach ($sizes as $size) {
-                    echo "<br>{$size['size']} (₱" . number_format($size['price'], 2) . ")";
+                    echo "<div class='size-container'>";
+                    echo "<br><span class='size-name'>{$size['size']}</span>";
+                    echo "<span class='size-price'>₱" . number_format($size['price'], 2) . "</span>";
+                    echo "<button class='add-to-cart'  data-id='$current_item_id' data-name='$current_item_name' data-size='{$size['size']}' data-price='{$size['price']}'>Add to cart</button>";
+                    echo "</div>";
                 }
                 echo "</div>";
                 echo "</div>";
@@ -488,7 +605,6 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
             // Reset for the new item
             $current_item_id = $item['item_id'];
             $current_item_name = $item['name'];
-            $current_item_description = $item['description'];
             $current_item_image = $item['image'];
             $sizes = [];
         }
@@ -506,9 +622,17 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $image_path =  $current_item_image;
         echo "<img src='$image_path' alt='$current_item_name'>";
 
-        echo "<div class='item-description'>$current_item_description";
+        echo "<div class='item-description'>";
+        echo "<div class='choose-size'>";
+            echo "<span>Choose a size:</span>";
+            echo "<button class='info-button'>i<span class='tooltip'>Customize at checkout</span></button>";
+        echo "</div>";
         foreach ($sizes as $size) {
-            echo "<br>{$size['size']} (₱" . number_format($size['price'], 2) . ")";
+            echo "<div class='size-container'>";
+            echo "<br><span class='size-name'>{$size['size']}</span>";
+            echo "<span class='size-price'>₱" . number_format($size['price'], 2) . "</span>";
+            echo "<button class='add-to-cart'  data-id='$current_item_id' data-name='$current_item_name' data-size='{$size['size']}' data-price='{$size['price']}'>Add to cart</button>";
+            echo "</div>";
         }
         echo "</div>";
         echo "</div>";
@@ -516,30 +640,23 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
 </div>
 
-<h2>Tea Beverages</h2>
-    <a href="ordernow.php#cat-7">
-        <br>
-        <button class="order-now-btn">Order Now</button>
-    </a>
+<h2 id="cat-8">Pastries</h2>
 <div class="menu-container">
     <?php
-    // Query to get items for Frappes (Category 2)
-    $query_frappes = "SELECT m.item_id, m.name, m.description, m.image, i.size, i.price 
+    $query_pastries = "SELECT m.item_id, m.name, m.description, m.image, i.size, i.price 
                       FROM menu_items m
                       JOIN item_sizes i ON m.item_id = i.item_id
-                      WHERE m.category_id = 7"; // Filter for Frappes category
+                      WHERE m.category_id = 8";
 
-    $stmt_frappes = $pdo->query($query_frappes);
-    $frappes = $stmt_frappes->fetchAll(PDO::FETCH_ASSOC);
+    $stmt_pastries = $pdo->query($query_pastries);
+    $pastries = $stmt_pastries->fetchAll(PDO::FETCH_ASSOC);
 
-    // Loop through the Frappes items and display them dynamically
     $current_item_id = null;
     $current_item_name = "";
-    $current_item_description = "";
     $current_item_image = "";
     $sizes = [];
 
-    foreach ($frappes as $item) {
+    foreach ($pastries as $item) {
         // If the item_id changes, output the previous item and reset
         if ($current_item_id != $item['item_id']) {
             if ($current_item_id !== null) {
@@ -551,9 +668,12 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 $image_path =  $current_item_image;
                 echo "<img src='$image_path' alt='$current_item_name'>";
 
-                echo "<div class='item-description'>$current_item_description";
+                echo "<div class='item-description'>";
                 foreach ($sizes as $size) {
-                    echo "<br>{$size['size']} (₱" . number_format($size['price'], 2) . ")";
+                    echo "<div class='size-container'>";
+                    echo "<span class='size-price'>₱" . number_format($size['price'], 2) . "</span>";
+                    echo "<button class='add-to-cart'  data-id='$current_item_id' data-name='$current_item_name' data-size='{$size['size']}' data-price='{$size['price']}'>Add to cart</button>";
+                    echo "</div>";
                 }
                 echo "</div>";
                 echo "</div>";
@@ -562,7 +682,6 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
             // Reset for the new item
             $current_item_id = $item['item_id'];
             $current_item_name = $item['name'];
-            $current_item_description = $item['description'];
             $current_item_image = $item['image'];
             $sizes = [];
         }
@@ -580,9 +699,12 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $image_path =  $current_item_image;
         echo "<img src='$image_path' alt='$current_item_name'>";
 
-        echo "<div class='item-description'>$current_item_description";
+        echo "<div class='item-description'>";
         foreach ($sizes as $size) {
-            echo "<br>{$size['size']} (₱" . number_format($size['price'], 2) . ")";
+            echo "<div class='size-container'>";
+            echo "<span class='size-price'>₱" . number_format($size['price'], 2) . "</span>";
+            echo "<button class='add-to-cart'  data-id='$current_item_id' data-name='$current_item_name' data-size='{$size['size']}' data-price='{$size['price']}'>Add to cart</button>";
+            echo "</div>";
         }
         echo "</div>";
         echo "</div>";
@@ -590,44 +712,44 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
 </div>
 
-<h2>Pastries</h2>
-    <a href="ordernow.php#cat-8">
-        <br>
-        <button class="order-now-btn">Order Now</button>
-    </a>
+<h2 id="cat-9">Tumblers</h2>
 <div class="menu-container">
     <?php
-    // Query to get items for Frappes (Category 2)
-    $query_frappes = "SELECT m.item_id, m.name, m.description, m.image, i.size, i.price 
+    $query_tumblers = "SELECT m.item_id, m.name, m.description, m.image, i.size, i.price 
                       FROM menu_items m
                       JOIN item_sizes i ON m.item_id = i.item_id
-                      WHERE m.category_id = 8"; // Filter for Frappes category
+                      WHERE m.category_id = 9";
 
-    $stmt_frappes = $pdo->query($query_frappes);
-    $frappes = $stmt_frappes->fetchAll(PDO::FETCH_ASSOC);
+    $stmt_tumblers = $pdo->query($query_tumblers);
+    $tumblers = $stmt_tumblers->fetchAll(PDO::FETCH_ASSOC);
 
-    // Loop through the Frappes items and display them dynamically
     $current_item_id = null;
     $current_item_name = "";
-    $current_item_description = "";
     $current_item_image = "";
     $sizes = [];
 
-    foreach ($frappes as $item) {
+    foreach ($tumblers as $item) {
         // If the item_id changes, output the previous item and reset
         if ($current_item_id != $item['item_id']) {
             if ($current_item_id !== null) {
                 // Display the previous item
-                echo "<div class='menu-item'>";
-                echo "<div class='item-name'>$current_item_name</div>";
+                echo "<div class='menu-item' data-id='{$current_item_id}' data-name='{$current_item_name}' data-image='{$current_item_image}'>";
+                echo "<div class='item-name'>{$current_item_name}</div>";
 
                 // Display the image
                 $image_path =  $current_item_image;
-                echo "<img src='$image_path' alt='$current_item_name'>";
+                echo "<img src='$image_path' alt='{$current_item_name}'>";
 
-                echo "<div class='item-description'>$current_item_description";
+                echo "<div class='item-description'>";
+                echo "<div class='choose-size'>";
+                    echo "<span>Option:</span>";
+                    echo "<button class='info-button'>i<span class='tooltip'>Customize at checkout</span></button>";
+                echo "</div>";
                 foreach ($sizes as $size) {
-                    echo "<br>{$size['size']} (₱" . number_format($size['price'], 2) . ")";
+                    echo "<div class='size-container'>";
+                    echo "<span class='size-price'>₱" . number_format($size['price'], 2) . "</span>";
+                    echo "<button class='add-to-cart'  data-id='$current_item_id' data-name='$current_item_name' data-size='{$size['size']}' data-price='{$size['price']}'>Add to cart</button>";
+                    echo "</div>";
                 }
                 echo "</div>";
                 echo "</div>";
@@ -636,7 +758,6 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
             // Reset for the new item
             $current_item_id = $item['item_id'];
             $current_item_name = $item['name'];
-            $current_item_description = $item['description'];
             $current_item_image = $item['image'];
             $sizes = [];
         }
@@ -647,16 +768,24 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     // Output the last item
     if ($current_item_id !== null) {
-        echo "<div class='menu-item'>";
+        echo "<div class='menu-item' data-id='{$current_item_id}' data-name='{$current_item_name}' data-image='{$current_item_image}'>";
         echo "<div class='item-name'>$current_item_name</div>";
 
         // Display the image
         $image_path =  $current_item_image;
         echo "<img src='$image_path' alt='$current_item_name'>";
 
-        echo "<div class='item-description'>$current_item_description";
+        echo "<div class='item-description'>";
+        echo "<div class='choose-size'>";
+            echo "<span>Option:</span>";
+            echo "<button class='info-button'>i<span class='tooltip'>Customize at checkout</span></button>";
+        echo "</div>";
         foreach ($sizes as $size) {
-            echo "<br>{$size['size']} (₱" . number_format($size['price'], 2) . ")";
+            echo "<div class='size-container'>";
+            echo "<span class='size-price'>₱" . number_format($size['price'], 2) . "</span>";
+            "<button class='info-button'>i<span class='tooltip'>Customize at checkout</span></button>";
+            echo "<button class='add-to-cart tisteng-ba'  data-id='$current_item_id' data-name='$current_item_name' data-size='{$size['size']}' data-price='{$size['price']}'>Add to cart</button>";
+            echo "</div>";
         }
         echo "</div>";
         echo "</div>";
@@ -664,110 +793,59 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
 </div>
 
-<h2>Tumblers</h2>
-    <a href="ordernow.php#cat-9">
-        <br>
-        <button class="order-now-btn">Order Now</button>
-    </a>
-<div class="menu-container">
-    <?php
-    // Query to get items for Frappes (Category 2)
-    $query_frappes = "SELECT m.item_id, m.name, m.description, m.image, i.size, i.price 
-                      FROM menu_items m
-                      JOIN item_sizes i ON m.item_id = i.item_id
-                      WHERE m.category_id = 9"; // Filter for Frappes category
-
-    $stmt_frappes = $pdo->query($query_frappes);
-    $frappes = $stmt_frappes->fetchAll(PDO::FETCH_ASSOC);
-
-    // Loop through the Frappes items and display them dynamically
-    $current_item_id = null;
-    $current_item_name = "";
-    $current_item_description = "";
-    $current_item_image = "";
-    $sizes = [];
-
-    foreach ($frappes as $item) {
-        // If the item_id changes, output the previous item and reset
-        if ($current_item_id != $item['item_id']) {
-            if ($current_item_id !== null) {
-                // Display the previous item
-                echo "<div class='menu-item'>";
-                echo "<div class='item-name'>$current_item_name</div>";
-
-                // Display the image
-                $image_path =  $current_item_image;
-                echo "<img src='$image_path' alt='$current_item_name'>";
-
-                echo "<div class='item-description'>$current_item_description";
-                foreach ($sizes as $size) {
-                    echo "<br>{$size['size']} (₱" . number_format($size['price'], 2) . ")";
-                }
-                echo "</div>";
-                echo "</div>";
-            }
-
-            // Reset for the new item
-            $current_item_id = $item['item_id'];
-            $current_item_name = $item['name'];
-            $current_item_description = $item['description'];
-            $current_item_image = $item['image'];
-            $sizes = [];
-        }
-
-        // Add the size and price to the array
-        $sizes[] = ['size' => $item['size'], 'price' => $item['price']];
-    }
-
-    // Output the last item
-    if ($current_item_id !== null) {
-        echo "<div class='menu-item'>";
-        echo "<div class='item-name'>$current_item_name</div>";
-
-        // Display the image
-        $image_path =  $current_item_image;
-        echo "<img src='$image_path' alt='$current_item_name'>";
-
-        echo "<div class='item-description'>$current_item_description";
-        foreach ($sizes as $size) {
-            echo "<br>{$size['size']} (₱" . number_format($size['price'], 2) . ")";
-        }
-        echo "</div>";
-        echo "</div>";
-    }
-    ?>
 </div>
-
-<a href="orderpage.html">
-        <button class="order-now-btn">Order Now</button>
-    </a>
-    <footer>
+<div class="cart-area">
+    <div class="cart-container">
+        <div class="basket">
+            <h1 class="header">Your Cart</h1>
+            <!-- Scrollable container for the items -->
+            <div class="basket-items-container" id="basket-items">Your cart is empty.</div>
+            <!-- Sticky total and checkout section -->
+            <div class="footer">
+                <div class="total">
+                    <p>Total: <strong>₱<span id="total-price">0</span></strong></p>
+                </div>
+                <button id="checkout-button">Checkout</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<footer>
         <div class="foot">
-            <div class="about">
+            <div class="about" id="about-dropdown">
                 <span>About</span>
-                <a href="aboutus.php">Our Coffee</a>
-                <a href="aboutus.php">Our Company</a>
-                <a href="aboutus.php">Service</a>
+                <div class="about-content foot-content" id="about-dropdown-menu">
+                    <a href="aboutus.php">Our Coffee</a>
+                    <a href="aboutus.php">Our Company</a>
+                    <a href="aboutus.php">Service</a>
+                </div>
             </div>
-            <div class="order">
+            <div class="order" id="order-dropdown">
                 <span>Order & Pickup</span>
-                <a href="ordernow.php">Order on the Web</a>
-                <a href="#">Delivery</a>
-                <a href="#">Return Policy</a>
-                <a href="#">Bulk Order</a>
+                <div class="order-content foot-content" id="order-dropdown-menu">
+                    <a href="ordernow.php">Order on the Web</a>
+                    <a href="#">Delivery</a>
+                    <a href="#">Return Policy</a>
+                    <a href="#">Bulk Order</a>
+                </div>
             </div>
-            <div class="location">
+            <div class="location" id="location-dropdown">
                 <span>Location</span>
-                <a href="#">Quezon City</a>
-                <a href="#">Rizal</a>
-                <a href="#">Metro Manila</a>
-                <a href="#">Marikina City</a>
+                <div class="location-content foot-content" id="location-dropdown-menu">
+                    <a href="#">Quezon City</a>
+                    <a href="#">Rizal</a>
+                    <a href="#">Metro Manila</a>
+                    <a href="#">Marikina City</a>
+                </div>
             </div>
-            <div class="social">
+            <div class="social" id="social-dropdown">
                 <span>Social Impact</span>
-                <a href="#">People</a>
-                <a href="#">Planet</a>
-                <a href="#">Environment</a>
+                <div class="social-content foot-content" id="social-dropdown-menu">
+                    <a href="#">People</a>
+                    <a href="#">Planet</a>
+                    <a href="#">Environment</a>
+                </div>
             </div>
             <div class="language">
                 <span>Language</span>
@@ -777,7 +855,6 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <option value="coming-soon" disabled>Coming Soon</option>
                     </select>
                 </div>
-            </div>
             </div>
         </div>
     </footer>

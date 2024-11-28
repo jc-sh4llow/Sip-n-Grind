@@ -1,42 +1,45 @@
 <?php
-// process_order.php
+session_start();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Database connection
-    $host = "localhost";
-    $db = "sipngrind";
-    $user = "root";
-    $pass = "";
+// Check if the cart session exists
+if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
+    header('Location: order_now.php');
+    exit();
+}
 
-    try {
-        $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$cart = $_SESSION['cart'];
+$customer_name = $_POST['customer_name'];
+$customer_address = $_POST['customer_address'];
+$customer_phone = $_POST['customer_phone'];
 
-        // Begin transaction
-        $pdo->beginTransaction();
+// Connect to your database
+$pdo = new PDO('mysql:host=localhost;dbname=your_db', 'username', 'password');
 
-        foreach ($_POST as $key => $value) {
-            // Handle size selection (size_123)
-            if (strpos($key, 'size_') === 0) {
-                $itemId = str_replace('size_', '', $key); // Extract item ID
-                $sizeId = (int)$value; // Selected size ID
-                $quantity = $_POST["quantity_$itemId"]; // Get quantity for the item
-                $price = $_POST["price_$itemId"]; // Price for the item
+// Insert order into the orders table
+$stmt = $pdo->prepare("INSERT INTO orders (customer_name, customer_address, customer_phone, total_price, created_at) VALUES (?, ?, ?, ?, NOW())");
+$stmt->execute([$customer_name, $customer_address, $customer_phone, calculateTotalPrice($cart)]);
 
-                // Insert order into the database
-                $stmt = $pdo->prepare("INSERT INTO orders (item_id, size_id, quantity, total_price) 
-                                       VALUES (?, ?, ?, ?)");
-                $totalPrice = $quantity * $price;
-                $stmt->execute([$itemId, $sizeId, $quantity, $totalPrice]);
-            }
-        }
+$order_id = $pdo->lastInsertId(); // Get the last inserted order ID
 
-        // Commit transaction
-        $pdo->commit();
-        echo json_encode(["success" => true, "message" => "Order processed successfully."]);
-    } catch (PDOException $e) {
-        $pdo->rollBack();
-        echo json_encode(["success" => false, "message" => $e->getMessage()]);
+// Insert each cart item into the order_items table
+foreach ($cart as $item) {
+    $stmt = $pdo->prepare("INSERT INTO order_items (order_id, item_id, size_id, quantity, customizations, item_price) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->execute([$order_id, $item['item_id'], $item['size_id'], $item['quantity'], json_encode($item['customizations']), $item['price']]);
+}
+
+// Clear the cart session after order submission
+unset($_SESSION['cart']);
+
+// Redirect to a confirmation page or thank you page
+header('Location: thank_you.php');
+exit();
+
+// Calculate total price of cart
+function calculateTotalPrice($cart) {
+    $total = 0;
+    foreach ($cart as $item) {
+        $total += $item['price'] * $item['quantity'];
     }
+    return $total;
 }
 ?>

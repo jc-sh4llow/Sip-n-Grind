@@ -1,16 +1,14 @@
 <?php
-// checkout.php
+session_start();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get the raw JSON POST data
-    $jsonData = file_get_contents("php://input");
-    $basket = json_decode($jsonData, true); // Decode the basket data
-
-    if (empty($basket)) {
-        echo json_encode(["success" => false, "message" => "Basket is empty"]);
-        exit;
-    }
+// Check if cart data exists in session
+if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
+    // Redirect to Order Now page if cart is empty
+    header('Location: order_now.php');
+    exit();
 }
+
+$cart = $_SESSION['cart']; // Retrieve cart data from session
 ?>
 
 <!DOCTYPE html>
@@ -21,32 +19,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Checkout</title>
 </head>
 <body>
-    <h1>Checkout</h1>
 
-    <form action="process_order.php" method="POST" id="checkout-form">
-        <div id="basket-items">
-            <?php
-            foreach ($basket as $itemId => $item) {
-                echo "
-                <div class='checkout-item'>
-                    <img src='{$item['imgSrc']}' alt='{$item['name']}'>
-                    <p>{$item['name']} - ₱{$item['price']}</p>
-                    <p>Quantity: {$item['quantity']}</p>
+<h1>Your Cart</h1>
 
-                    <!-- Size selector -->
-                    <label for='size_{$itemId}'>Select Size</label>
-                    <select name='size_{$itemId}' id='size_{$itemId}' required>
-                        <option value='1'>Small</option>
-                        <option value='2'>Medium</option>
-                        <option value='3'>Large</option>
-                    </select>
-                </div>
-                ";
-            }
-            ?>
-        </div>
+<div id="checkout-cart">
+    <?php
+    // Loop through the cart and display items
+    foreach ($cart as $itemKey => $item) {
+        echo "<div class='cart-item'>";
+        echo "<p>Name: " . $item['name'] . "</p>";
+        echo "<p>Size: " . $item['size'] . "</p>";
+        echo "<p>Price: ₱" . number_format($item['price'], 2) . "</p>";
+        echo "<p>Quantity: " . $item['quantity'] . "</p>";
+        echo "<hr>";
+        echo "</div>";
+    }
+    ?>
+</div>
 
-        <button type="submit">Submit Order</button>
-    </form>
+
+<!-- Optional: Collect customer info -->
+<form action="process_order.php" method="POST">
+    <h3>Customer Information</h3>
+    <label for="customer_name">Name:</label>
+    <input type="text" id="customer_name" name="customer_name" required><br>
+
+    <label for="customer_address">Address:</label>
+    <textarea id="customer_address" name="customer_address" required></textarea><br>
+
+    <label for="customer_phone">Phone Number:</label>
+    <input type="text" id="customer_phone" name="customer_phone" required><br>
+
+    <button type="submit">Submit Order</button>
+</form>
+
 </body>
 </html>
